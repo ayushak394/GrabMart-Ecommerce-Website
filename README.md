@@ -1,9 +1,9 @@
-**GrabMart: E-Commerce Project
-**
+**GrabMart: E-Commerce Project**
+
 This is a full-stack e-commerce project made using MongoDB, Express, React, and Node.js (MERN Stack).
 
-**Installation
-**
+**Installation**
+
 Follow these steps to set up and run the project locally.
 
 Prerequisites
@@ -55,8 +55,8 @@ MONGO_URL=mongodb://localhost:27017/E-commerce
 
 with your MongoDB Compass connection link and database collection name.
 
-**MongoDB Setup
-**
+**MongoDB Setup**
+
 A sample dataset has been provided to populate the products collection. The file is named:
 
 E-commerce.products.json
