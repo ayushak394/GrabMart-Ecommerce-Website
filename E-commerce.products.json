@@ -1,0 +1,166 @@
+[{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b476"
+  },
+  "name": "Wireless Mouse",
+  "description": "Ergonomic wireless mouse with adjustable DPI settings.",
+  "price": 29.99,
+  "image": "https://images7.alphacoders.com/137/1371925.png",
+  "category": "Electronics",
+  "releaseDate": {
+    "$date": "2025-12-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b477"
+  },
+  "name": "Bluetooth Headphones",
+  "description": "Noise-canceling over-ear Bluetooth headphones with 30-hour battery life.",
+  "price": 79.99,
+  "image": "https://149367133.v2.pressablecdn.com/wp-content/uploads/2024/03/Quake_2-Landscape-White-3-logitech-2024031.jpg",
+  "category": "Electronics",
+  "releaseDate": {
+    "$date": "2025-11-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b478"
+  },
+  "name": "Portable Charger",
+  "description": "Compact 10,000mAh power bank for fast charging on the go.",
+  "price": 19.99,
+  "image": "https://wallpapers.com/images/hd/wireless-charging-1920-x-1080-wallpaper-9ajmqnuiahop45br.jpg",
+  "category": "Accessories",
+  "releaseDate": {
+    "$date": "2025-10-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b479"
+  },
+  "name": "Coffee Maker",
+  "description": "Single-serve coffee maker with brew strength control and quick brew time.",
+  "price": 49.99,
+  "image": "https://t3.ftcdn.net/jpg/06/21/57/48/360_F_621574815_ExL1BHDSMje4uY1PEfwhzAAKBM8PmUxl.jpg",
+  "category": "Home Appliances",
+  "releaseDate": {
+    "$date": "2025-09-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47a"
+  },
+  "name": "Smart Watch",
+  "description": "Fitness tracking smartwatch with heart rate monitoring and sleep tracking.",
+  "price": 129.99,
+  "image": "https://wallpapers.com/images/hd/blue-apple-smartwatch-bglrr4pkmd5246nx.jpg",
+  "category": "Wearables",
+  "releaseDate": {
+    "$date": "2025-08-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47d"
+  },
+  "name": "Leather Wallet",
+  "description": "Genuine leather wallet with multiple card slots and coin pocket.",
+  "price": 39.99,
+  "image": "https://png.pngtree.com/background/20230426/original/pngtree-leather-wallet-with-a-button-laying-on-top-of-an-object-picture-image_2488033.jpg",
+  "category": "Accessories",
+  "releaseDate": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47f"
+  },
+  "name": "Men's Running Shoes",
+  "description": "Lightweight and breathable running shoes with high cushioning for comfort.",
+  "price": 59.99,
+  "image": "https://c1.wallpaperflare.com/preview/866/444/955/shoe-nike-person-white.jpg",
+  "category": "Footwear",
+  "releaseDate": {
+    "$date": "2025-06-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "679641bf7488c4f5bb9d5823"
+  },
+  "id": "67961b5637d200c96d985e88",
+  "name": "M4 Macbook Pro",
+  "description": "The M4 Apple laptop combines powerful performance, stunning Retina display, and up to 20 hours of battery life in a sleek, portable design.",
+  "price": 1499.99,
+  "image": "https://ares.shiftdelete.net/2024/08/apple-m4-macbook-pro-ekran-ozellikleri-1-e1723774803719.jpg",
+  "category": "Laptop",
+  "createdAt": "2025-01-26T12:00:00Z",
+  "releaseDate": {
+    "$date": "2025-05-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e369"
+  },
+  "name": "4K Smart TV 55-inch",
+  "category": "Electronics",
+  "price": 499.99,
+  "description": "Ultra HD 4K Smart TV with built-in streaming apps, HDR support, and stunning picture quality.",
+  "stock": 75,
+  "brand": "VisionMax",
+  "image": "https://wallpapers.com/images/hd/commercial-on-4k-tv-cvs1k0t5vzov5s0c.jpg",
+  "releaseDate": {
+    "$date": "2025-04-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36a"
+  },
+  "name": "Smart Fitness Tracker",
+  "category": "Health & Fitness",
+  "price": 49.99,
+  "description": "A stylish fitness tracker that monitors steps, heart rate, and sleep quality with a 7-day battery life.",
+  "stock": 200,
+  "brand": "FitTrack",
+  "image": "https://cdn.pixabay.com/photo/2021/11/03/05/33/fitness-band-6764739_640.jpg",
+  "releaseDate": {
+    "$date": "2025-03-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36b"
+  },
+  "name": "Electric Cordless Kettle",
+  "category": "Home Appliances",
+  "price": 29.99,
+  "description": "Fast-boiling electric kettle with automatic shutoff and temperature control for precise boiling.",
+  "stock": 150,
+  "brand": "BoilEase",
+  "image": "https://png.pngtree.com/thumb_back/fh260/background/20230722/pngtree-illustration-of-a-sleek-electric-kettle-for-minimalist-homes-image_3776855.jpg",
+  "releaseDate": {
+    "$date": "2025-02-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36c"
+  },
+  "name": "Organic Cotton T-shirt",
+  "category": "Apparel",
+  "price": 19.99,
+  "description": "Soft and breathable organic cotton T-shirt, available in multiple sizes and colors.",
+  "stock": 500,
+  "brand": "EcoWear",
+  "image": "https://media.istockphoto.com/id/1345934516/photo/natural-organic-cotton-t-shirts-and-cotton-plant-flowers-on-white-table-eco-clothes-fashion.jpg?s=612x612&w=0&k=20&c=EMLo2G_aBcJ9g2rVPinW01iNnscqgyD_wWz4-SnlR8A=",
+  "releaseDate": {
+    "$date": "2025-01-01T00:00:00.000Z"
+  }
+}]
