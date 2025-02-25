@@ -1,0 +1,318 @@
+[{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b476"
+  },
+  "name": "Wireless Mouse",
+  "description": "Ergonomic wireless mouse with adjustable DPI settings.",
+  "price": 29.99,
+  "image": "https://images7.alphacoders.com/137/1371925.png",
+  "category": "Electronics",
+  "releaseDate": {
+    "$date": "2025-12-01T00:00:00.000Z"
+  },
+  "stock": 94
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b477"
+  },
+  "name": "Bluetooth Headphones",
+  "description": "Noise-canceling over-ear Bluetooth headphones with 30-hour battery life.",
+  "price": 79.99,
+  "image": "https://149367133.v2.pressablecdn.com/wp-content/uploads/2024/03/Quake_2-Landscape-White-3-logitech-2024031.jpg",
+  "category": "Electronics",
+  "releaseDate": {
+    "$date": "2025-11-01T00:00:00.000Z"
+  },
+  "stock": 53
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b478"
+  },
+  "name": "Portable Charger",
+  "description": "Compact 10,000mAh power bank for fast charging on the go.",
+  "price": 19.99,
+  "image": "https://wallpapers.com/images/hd/wireless-charging-1920-x-1080-wallpaper-9ajmqnuiahop45br.jpg",
+  "category": "Accessories",
+  "releaseDate": {
+    "$date": "2025-10-01T00:00:00.000Z"
+  },
+  "stock": 24
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b479"
+  },
+  "name": "Coffee Maker",
+  "description": "Single-serve coffee maker with brew strength control and quick brew time.",
+  "price": 49.99,
+  "image": "https://t3.ftcdn.net/jpg/06/21/57/48/360_F_621574815_ExL1BHDSMje4uY1PEfwhzAAKBM8PmUxl.jpg",
+  "category": "Home Appliances",
+  "releaseDate": {
+    "$date": "2025-09-01T00:00:00.000Z"
+  },
+  "stock": 96
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47a"
+  },
+  "name": "Smart Watch",
+  "description": "Fitness tracking smartwatch with heart rate monitoring and sleep tracking.",
+  "price": 129.99,
+  "image": "https://wallpapers.com/images/hd/blue-apple-smartwatch-bglrr4pkmd5246nx.jpg",
+  "category": "Wearables",
+  "releaseDate": {
+    "$date": "2025-08-01T00:00:00.000Z"
+  },
+  "stock": 94
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47d"
+  },
+  "name": "Leather Wallet",
+  "description": "Genuine leather wallet with multiple card slots and coin pocket.",
+  "price": 39.99,
+  "image": "https://png.pngtree.com/background/20230426/original/pngtree-leather-wallet-with-a-button-laying-on-top-of-an-object-picture-image_2488033.jpg",
+  "category": "Accessories",
+  "releaseDate": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "stock": 45
+},
+{
+  "_id": {
+    "$oid": "67963a3444b4bf7cb1a3b47f"
+  },
+  "name": "Men's Running Shoes",
+  "description": "Lightweight and breathable running shoes with high cushioning for comfort.",
+  "price": 59.99,
+  "image": "https://c1.wallpaperflare.com/preview/866/444/955/shoe-nike-person-white.jpg",
+  "category": "Footwear",
+  "releaseDate": {
+    "$date": "2025-06-01T00:00:00.000Z"
+  },
+  "stock": 79
+},
+{
+  "_id": {
+    "$oid": "679641bf7488c4f5bb9d5823"
+  },
+  "id": "67961b5637d200c96d985e88",
+  "name": "M4 Macbook Pro",
+  "description": "The M4 Apple laptop combines powerful performance, stunning Retina display, and up to 20 hours of battery life in a sleek, portable design.",
+  "price": 1499.99,
+  "image": "https://ares.shiftdelete.net/2024/08/apple-m4-macbook-pro-ekran-ozellikleri-1-e1723774803719.jpg",
+  "category": "Laptop",
+  "createdAt": "2025-01-26T12:00:00Z",
+  "releaseDate": {
+    "$date": "2025-05-01T00:00:00.000Z"
+  },
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e369"
+  },
+  "name": "4K Smart TV 55-inch",
+  "category": "Electronics",
+  "price": 499.99,
+  "description": "Ultra HD 4K Smart TV with built-in streaming apps, HDR support, and stunning picture quality.",
+  "stock": 75,
+  "brand": "VisionMax",
+  "image": "https://wallpapers.com/images/hd/commercial-on-4k-tv-cvs1k0t5vzov5s0c.jpg",
+  "releaseDate": {
+    "$date": "2025-04-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36a"
+  },
+  "name": "Smart Fitness Tracker",
+  "category": "Health & Fitness",
+  "price": 49.99,
+  "description": "A stylish fitness tracker that monitors steps, heart rate, and sleep quality with a 7-day battery life.",
+  "stock": 200,
+  "brand": "FitTrack",
+  "image": "https://cdn.pixabay.com/photo/2021/11/03/05/33/fitness-band-6764739_640.jpg",
+  "releaseDate": {
+    "$date": "2025-03-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36b"
+  },
+  "name": "Electric Cordless Kettle",
+  "category": "Home Appliances",
+  "price": 29.99,
+  "description": "Fast-boiling electric kettle with automatic shutoff and temperature control for precise boiling.",
+  "stock": 150,
+  "brand": "BoilEase",
+  "image": "https://png.pngtree.com/thumb_back/fh260/background/20230722/pngtree-illustration-of-a-sleek-electric-kettle-for-minimalist-homes-image_3776855.jpg",
+  "releaseDate": {
+    "$date": "2025-02-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67964a7cebe9617ea279e36c"
+  },
+  "name": "Organic Cotton T-shirt",
+  "category": "Apparel",
+  "price": 19.99,
+  "description": "Soft and breathable organic cotton T-shirt, available in multiple sizes and colors.",
+  "stock": 500,
+  "brand": "EcoWear",
+  "image": "https://media.istockphoto.com/id/1345934516/photo/natural-organic-cotton-t-shirts-and-cotton-plant-flowers-on-white-table-eco-clothes-fashion.jpg?s=612x612&w=0&k=20&c=EMLo2G_aBcJ9g2rVPinW01iNnscqgyD_wWz4-SnlR8A=",
+  "releaseDate": {
+    "$date": "2025-01-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a23f"
+  },
+  "name": "Smart Thermostat",
+  "description": "AI-powered thermostat with voice control, energy-saving automation, and remote access via app.",
+  "price": 149.99,
+  "image": "https://cdn.mos.cms.futurecdn.net/Ek2kyrb7BqbAZXepGvvVYL.jpg",
+  "category": "Home Automation",
+  "releaseDate": "2025-01-15T00:00:00.000+00:00",
+  "stock": 23
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a240"
+  },
+  "name": "Wireless Mechanical Keyboard",
+  "description": "RGB-backlit mechanical keyboard with Bluetooth and wired modes, hot-swappable switches, and long battery life.",
+  "price": 99.99,
+  "image": "https://down-ph.img.susercontent.com/file/ph-11134207-7r991-lwgsufab5yzl31",
+  "category": "Electronics",
+  "releaseDate": "2025-02-20T00:00:00.000+00:00",
+  "stock": 56
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a241"
+  },
+  "name": "Solar-Powered Power Bank",
+  "description": "20,000mAh fast-charging power bank with built-in solar panel for sustainable charging on the go.",
+  "price": 39.99,
+  "image": "https://5.imimg.com/data5/SELLER/Default/2023/9/343608031/RL/XW/MB/160915923/71tmdbz-g-l.jpg",
+  "category": "Accessories",
+  "releaseDate": "2025-03-18T00:00:00.000+00:00",
+  "stock": 99
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a242"
+  },
+  "name": "Self-Cleaning Water Bottle",
+  "description": "UV sterilization water bottle that eliminates bacteria and purifies water in 60 seconds.",
+  "price": 79.99,
+  "image": "https://wetried.it/cdn-cgi/imagedelivery/2TqHVWJc_vpFBiW-iQAMcw/wetried.it/2021/06/larq-watter-bottle.jpg/w=1920,h=1290",
+  "category": "Health & Wellness",
+  "releaseDate": "2025-04-25T00:00:00.000+00:00",
+  "stock": 38
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a243"
+  },
+  "name": "Electric Standing Desk",
+  "description": "Height-adjustable ergonomic desk with memory presets, anti-collision sensors, and USB charging ports.",
+  "price": 299.99,
+  "image": "https://m.media-amazon.com/images/I/71xF6xSpWVL.jpg",
+  "category": "Office Furniture",
+  "releaseDate": "2025-05-30T00:00:00.000+00:00",
+  "stock": 50
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a244"
+  },
+  "name": "AI-Powered Security Camera",
+  "description": "360° surveillance camera with motion tracking, facial recognition, and two-way audio.",
+  "price": 199.99,
+  "image": "https://img.freepik.com/premium-photo/security-camera-wall-with-word-security-it_786255-13772.jpg",
+  "category": "Home Security",
+  "releaseDate": "2025-06-15T00:00:00.000+00:00",
+  "stock": 84
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a245"
+  },
+  "name": "Smart Mirror",
+  "description": "Interactive mirror with built-in fitness tracking, weather updates, and smart home integration.",
+  "price": 249.99,
+  "image": "https://img5.su-cdn.com/cdn-cgi/image/width=750,height=750/mall/wms/product/img/productImg/2021/05/06/29ffd999e2124a9aa571a935e1ff7333.jpg",
+  "category": "Smart Home",
+  "releaseDate": "2025-07-22T00:00:00.000+00:00",
+  "stock": 60
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a246"
+  },
+  "name": "Mini Projector",
+  "description": "Compact 4K projector with built-in streaming apps, wireless casting, and auto keystone correction.",
+  "price": 179.99,
+  "image": "https://image.benq.com/is/image/benqco/how-to-choose-a-mini-portable-projector-laptop",
+  "category": "Entertainment",
+  "releaseDate": "2025-08-29T00:00:00.000+00:00",
+  "stock": 40
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a247"
+  },
+  "name": "Noise-Canceling Sleep Headphones",
+  "description": "Ultra-thin wireless sleep headphones with soft fabric, noise masking, and Bluetooth connectivity.",
+  "price": 69.99,
+  "image": "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2015%2F06%2Fkokoon-eeg-noise-cancelling-headphones-2222.jpg?w=960&cbr=1&q=90&fit=max",
+  "category": "Wearables",
+  "releaseDate": "2025-10-10T00:00:00.000+00:00",
+  "stock": 88
+},
+{
+  "_id": {
+    "$oid": "67b86445612e4c1ba651a248"
+  },
+  "name": "Smart Bike Lock",
+  "description": "Biometric fingerprint and Bluetooth-enabled bike lock with tamper alerts and GPS tracking.",
+  "price": 89.99,
+  "image": "https://www.linkalock.com/cdn/shop/articles/6_reasons_to_buy_Original_LINKA.jpg?v=1553586870&width=1500",
+  "category": "Outdoor & Sports",
+  "releaseDate": "2025-12-15T00:00:00.000+00:00",
+  "stock": 15
+},
+{
+  "_id": {
+    "$oid": "67b865d1c1ccda24db2fefcb"
+  },
+  "name": "Smart Pet Feeder",
+  "description": "Wi-Fi-enabled pet feeder with portion control, scheduled feeding, and app-based monitoring.",
+  "price": 89.99,
+  "image": "https://www.teslasmart.com/data/images-img-content/896-tesla-smart-pet-feeder-camera-1700x960-02.png",
+  "category": "Pet Supplies",
+  "releaseDate": "2025-11-05T00:00:00.000+00:00",
+  "stock": 21
+},
+{
+  "_id": {
+    "$oid": "67b865d1c1ccda24db2fefcc"
+  },
+  "name": "Smart Garden Kit",
+  "description": "Automated indoor garden with self-watering system, LED grow lights, and app integration for plant care.",
+  "price": 129.99,
+  "image": "https://images.stockcake.com/public/1/2/c/12c6d3d3-f7da-4c19-835b-071cf90b754b_large/indoor-herb-garden-stockcake.jpg",
+  "category": "Home & Living",
+  "releaseDate": "2025-09-17T00:00:00.000+00:00",
+  "stock": 82
+}]
