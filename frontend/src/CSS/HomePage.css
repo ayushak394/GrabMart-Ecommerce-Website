@@ -1,0 +1,5 @@
+.HomePage {
+  background: linear-gradient(135deg, #1a1a2e, #252548);
+  min-height: 100vh;
+  overflow: hidden;
+}

@@ -1,0 +1,104 @@
+.total-price {
+  background: linear-gradient(135deg, #1e1e2f, #252542);
+  color: #fff;
+  height: 80.7vh;
+  width: 260px;
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  padding: 35px 22px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.3s ease-in-out;
+  border: 3px solid transparent;
+  box-shadow: 3px 3px 15px rgba(0, 140, 255, 0.6);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.total-price:hover {
+  box-shadow: -6px 0 20px rgba(0, 0, 0, 0.4);
+  transform: translateX(-2px);
+}
+
+.total-price h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #62d2ff;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.total-price h1:hover {
+  transform: scale(1.08);
+  color: #008cff;
+}
+
+.total-price .price-details {
+  margin-top: 20px;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 60%;
+}
+
+.total-price .price-details p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 5px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.total-price .price-details img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.total-price .price-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #c7c7c7;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.total-price .button {
+  background: linear-gradient(135deg, #008cff, #0056b3);
+  color: white;
+  font-size: 15px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 140, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+}
+
+.total-price .button:hover {
+  background: linear-gradient(135deg, #62d2ff, #008cff);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 140, 255, 0.4);
+}
+
+.total-price .button:focus {
+  outline: none;
+}
+
+.total-price .button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 5px rgba(0, 140, 255, 0.2);
+}
