@@ -1,59 +1,90 @@
-GrabMart: E-Commerce Project
+🛒 GrabMart: E-Commerce Project
+GrabMart is a full-stack e-commerce project built using the MERN Stack (MongoDB, Express, React, and Node.js).
 
-This is a full-stack e-commerce project made using MongoDB, Express, React, and Node.js (MERN Stack).
-
-Installation
-
+🚀 Features
+User authentication (Login/Signup)
+Product listing & filtering
+Shopping cart functionality
+Secure checkout with payment integration
+Admin dashboard for managing products and orders
+📦 Installation
 Follow these steps to set up and run the project locally.
 
-Prerequisites
+✅ Prerequisites
+Make sure you have the following installed:
 
-Node.js installed on your system
+Node.js (Latest LTS version recommended)
+MongoDB (Running locally or using MongoDB Atlas)
+🛠 Setup
+1️⃣ Clone the Repository
+sh
+Copy
+Edit
+git clone https://github.com/yourusername/GrabMart.git
+cd GrabMart
+2️⃣ Install Dependencies
+Navigate to the project directory and install dependencies for both frontend and backend:
 
-MongoDB installed and running locally or using MongoDB Atlas
-
-Setup
-
-Install Dependencies
-Navigate to the project directory and run the following command in both the frontend and backend directories:
-
-cd frontend npm install cd .. cd backend npm install cd ..
-
-If any libraries are missing, install them using:
-
+sh
+Copy
+Edit
+cd frontend
 npm install
+cd ../backend
+npm install
+If any packages are missing, install them using:
 
-Start the Frontend
-cd frontend npm start
+sh
+Copy
+Edit
+npm install
+3️⃣ Configure Environment Variables
+Create a .env file in the backend directory and set up your MongoDB connection:
 
-To return to the main project directory, use:
-
-cd ..
-
-Start the Backend
-cd backend node app.js
-
-To return to the main project directory, use:
-
-cd ..
-
-Configure the Environment Variables
-Replace the following line in the .env file:
-
+sh
+Copy
+Edit
 MONGO_URL=mongodb://localhost:27017/E-commerce
+Replace the connection string with your MongoDB Compass/Atlas link if needed.
 
-with your MongoDB Compass connection link and database collection name.
+4️⃣ Start the Frontend
+sh
+Copy
+Edit
+cd frontend
+npm start
+To return to the main directory:
 
-MongoDB Setup
+sh
+Copy
+Edit
+cd ..
+5️⃣ Start the Backend
+sh
+Copy
+Edit
+cd backend
+node app.js
+To return to the main directory:
 
-A sample dataset has been provided to populate the products collection. The file is named:
+sh
+Copy
+Edit
+cd ..
+📂 MongoDB Setup
+A sample dataset is provided to populate the products collection.
 
-E-commerce.products.json
+Dataset file: E-commerce.products.json
+Import Command:
+sh
+Copy
+Edit
+mongoimport --db E-commerce --collection products --file E-commerce.products.json --jsonArray
+🛠 Tech Stack
+Frontend: React, HTML, CSS, Bootstrap
+Backend: Node.js, Express.js
+Database: MongoDB (Mongoose ORM)
+📜 License
+This project is for educational purposes and is open for further improvements.
 
-Import this file into your MongoDB database under the products collection.
-
-License
-
-This project is for educational purposes and open for further improvements.
-
-Feel free to contribute and enhance this project!
+🚀 Feel free to contribute and enhance this project!
