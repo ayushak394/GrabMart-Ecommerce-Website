@@ -8,7 +8,7 @@ const ProductList = ({ sortCriteria, searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const baseURL = "http://localhost:4000";
+  const baseURL = "https://grabmart-backend.onrender.com";
 
   useEffect(() => {
     axios
