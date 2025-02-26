@@ -26,7 +26,7 @@ const Cart = ({ totalItems }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const userId = getUserIdFromToken();
 
-  const baseURL = "http://localhost:4000";
+  const baseURL = "https://grabmart-backend.onrender.com";
 
   useEffect(() => {
     if (!userId) return;
