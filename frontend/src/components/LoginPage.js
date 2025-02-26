@@ -13,7 +13,7 @@ const LoginPage = () => {
     const password = e.target.password.value;
     const body = { username, password };
 
-    const baseURL = "http://localhost:4000";
+    const baseURL = "https://grabmart-backend.onrender.com";
 
     try {
       const response = await fetch(`${baseURL}/auth/login`, {
