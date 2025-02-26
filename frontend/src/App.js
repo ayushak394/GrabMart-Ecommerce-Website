@@ -28,10 +28,12 @@ function App() {
   const [totalItems, setTotalItems] = useState(0);
   const userId = getUserIdFromToken();
 
+  const baseURL = "http://localhost:4000";
+  
   useEffect(() => {
     if (!userId) return;
     axios
-      .get(`http://localhost:4000/cart/${userId}`)
+      .get(`${baseURL}/cart/${userId}`)
       .then((response) => {
         setCartItems(response.data);
         const total = cartItems.reduce((acc, item) => acc + item.quantity, 0);
