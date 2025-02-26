@@ -46,6 +46,13 @@ cd ..
 cd backend  
 node app.js  
 
+
+6️⃣ Configure Environment Variables
+Create a .env file in the backend directory and set up the necessary environment variables:
+MONGO_URL=mongodb://localhost:27017/E-commerce  # Replace with your MongoDB Compass/Atlas link if needed.
+JWT_SECRET=your_secret_key  # Replace with a secure secret key for JWT.
+JWT_EXPIRES_IN=1d  # Set JWT expiration time (e.g., 1d, 7d, etc.).
+
 📂 MongoDB Setup
 
 A sample dataset is provided to populate the products collection.
