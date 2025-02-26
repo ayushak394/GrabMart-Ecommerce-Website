@@ -28,7 +28,7 @@ function App() {
   const [totalItems, setTotalItems] = useState(0);
   const userId = getUserIdFromToken();
 
-  const baseURL = "http://localhost:4000";
+  const baseURL = "https://grabmart-backend.onrender.com";
   
   useEffect(() => {
     if (!userId) return;
