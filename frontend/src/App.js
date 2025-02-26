@@ -29,18 +29,18 @@ function App() {
   const userId = getUserIdFromToken();
 
   const baseURL = "https://grabmart-backend.onrender.com";
-  
+
   useEffect(() => {
     if (!userId) return;
     axios
       .get(`${baseURL}/cart/${userId}`)
       .then((response) => {
         setCartItems(response.data);
-        const total = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        const total = response.data.reduce((acc, item) => acc + item.quantity, 0);
         setTotalItems(total);
       })
       .catch((error) => console.error("Error fetching cart", error));
-  }, [userId, cartItems]);
+  }, [userId]);
 
   return (
     <BrowserRouter>
