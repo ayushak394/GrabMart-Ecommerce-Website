@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     const email = e.target.email.value;
     const newPassword = e.target.password.value;
 
-    const baseURL = "http://localhost:4000";
+    const baseURL = "https://grabmart-backend.onrender.com";
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
