@@ -13,7 +13,7 @@ const SignUpPage = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const baseURL = "http://localhost:4000";
+    const baseURL = "https://grabmart-backend.onrender.com";
 
     // Regex - Using pattern in email addresses to verify if email is valid or not
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
