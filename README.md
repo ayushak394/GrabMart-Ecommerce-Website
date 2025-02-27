@@ -63,6 +63,12 @@ Frontend: React, HTML, CSS, Bootstrap
 Backend: Node.js, Express.js
 Database: MongoDB (Mongoose ORM)
 
+🗂️ File Uploads:
+Ensure that a folder named **uploads** exists in the backend directory, as all user profile pictures will be stored there.  
+
+If the folder does not exist, create it manually:  
+mkdir backend/uploads
+
 📜 License
 This project is for educational purposes and is open for further improvements.
 🚀 Feel free to contribute and enhance this project!
