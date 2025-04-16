@@ -4,79 +4,74 @@
   position: fixed;
   top: 5rem;
   left: 0;
-  padding: 35px 22px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
+  padding: 15px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background: linear-gradient(135deg, #1a1a2e, #252548);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 140, 255, 0.4);
   transition: all 0.3s ease-in-out;
-  border: 3px solid transparent;
-  box-shadow: 0 3px 15px rgba(0, 140, 255, 0.6);
-  transition: box-shadow 0.3s ease-in-out;
 }
 
 .sidebar:hover {
-  box-shadow: 6px 0 20px rgba(0, 0, 0, 0.4);
-  transform: translateX(2px);
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.5);
+  transform: translateX(3px);
 }
 
 .sidebar h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 25px;
-  color: #f8f8f8;
+  color: #ffffff;
   letter-spacing: 1.5px;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .sidebar h1:hover {
-  transform: scale(1.08);
-  color: #62d2ff;
-}
-
-.sidebar h2 {
-  font-size: 19px;
-  font-weight: 600;
-  margin: 18px 0;
-  color: #c7c7c7;
+  transform: scale(1.1);
+  color: #00bfff;
 }
 
 .sidebar h3 {
-  font-size: 17px;
-  font-weight: 500;
-  color: #a9a9a9;
-  margin: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 15px 0 8px;
+  color: #dcdcdc;
+  letter-spacing: 1px;
 }
 
 .sidebar button {
-  background: linear-gradient(135deg, #008cff, #0056b3);
-  color: white;
+  background: linear-gradient(145deg, #0077ff, #0051a3);
+  color: #ffffff;
   font-size: 15px;
-  padding: 12px 18px;
+  padding: 12px 16px;
   margin: 6px 0;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
   width: 100%;
   text-align: center;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(0, 140, 255, 0.3);
+  letter-spacing: 0.6px;
+  box-shadow: 0 5px 12px rgba(0, 140, 255, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 .sidebar button:hover {
-  background: linear-gradient(135deg, #62d2ff, #008cff);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 15px rgba(0, 140, 255, 0.4);
+  background: linear-gradient(145deg, #00bfff, #008cff);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(0, 140, 255, 0.5);
 }
 
 .sidebar button:focus {
   outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 140, 255, 0.4);
 }
 
 .sidebar button:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 5px rgba(0, 140, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 140, 255, 0.2);
 }

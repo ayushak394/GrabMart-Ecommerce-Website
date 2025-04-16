@@ -5,7 +5,6 @@ const Sidebar = ({ setSortCriteria }) => {
   return (
     <div className="sidebar">
       <h1>Filters</h1>
-      <h2>Sort By:</h2>
       <h3>Price</h3>
       <button onClick={() => setSortCriteria("LowtoHigh")}>
         {" "}

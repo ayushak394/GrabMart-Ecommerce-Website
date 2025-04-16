@@ -19,10 +19,8 @@ mongoose // To connect to server using string storing in .env file
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Connection failed to MongoDB", err));
 
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`); // Start the server
+app.listen(4000, () => {
+  console.log("Server running on port 4000"); // Start the server
 });
 
 const authRoutes = require("./Routes/Authentication"); // to import routes into main app
@@ -40,3 +38,6 @@ app.use("/", productRoutes);
 
 const cartRoutes = require("./Routes/Cart");
 app.use("/cart", cartRoutes);
+
+const paymentRoutes = require("./Routes/Payment");
+app.use("/payment", paymentRoutes);

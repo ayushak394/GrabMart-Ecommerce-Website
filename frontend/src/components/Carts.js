@@ -20,13 +20,13 @@ const getUserIdFromToken = () => {
   }
 };
 
-const Cart = ({ totalItems }) => {
+const Cart = ({ totalItems, refreshCart }) => {
   useTokenCheck();
   const [cartItems, setCartItems] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const userId = getUserIdFromToken();
 
-  const baseURL = "https://grabmart-backend.onrender.com";
+  const baseURL = "http://localhost:4000";
 
   useEffect(() => {
     if (!userId) return;
@@ -49,6 +49,7 @@ const Cart = ({ totalItems }) => {
       .delete(`${baseURL}/cart/remove/${userId}/${productId}`)
       .then(() => {
         console.log("Item removed successfully");
+        refreshCart();
       })
       .catch((error) => console.error("Error removing item", error));
   };
@@ -66,6 +67,7 @@ const Cart = ({ totalItems }) => {
             })
             .then(() => {
               console.log("Quantity updated successfully");
+              refreshCart();
             })
             .catch((error) => console.error("Error updating quantity", error));
           return { ...item, quantity: updatedQuantity };
@@ -102,7 +104,7 @@ const Cart = ({ totalItems }) => {
                 width="50"
               />
               <p>
-                {item.productId.name} - ${item.productId.price} x{" "}
+                {item.productId.name} - ₹{item.productId.price} x{" "}
                 {item.quantity}
               </p>
               <button

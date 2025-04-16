@@ -18,7 +18,7 @@ const getUserIdFromToken = () => {
   }
 };
 
-const baseURL = "https://grabmart-backend.onrender.com";
+const baseURL = "http://localhost:4000";
 
 const Profile = ({ totalItems }) => {
   useTokenCheck();

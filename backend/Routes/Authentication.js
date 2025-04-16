@@ -3,6 +3,14 @@ const bcrypt = require("bcryptjs"); // Library for securely hashing passwords
 const jwt = require("jsonwebtoken"); // Creating and Verifying JWT tokens
 const User = require("../Models/UserSchema"); // Refers to the Mongoose model for the User collection
 const router = express.Router(); // Used to define routes like /register/login etc.
+const twilio = require("twilio");
+
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const serviceSid = process.env.TWILIO_SERVICE_SID;
+
+const client = twilio(accountSid, authToken);
+
 
 router.post("/register", async (req, res) => {
   // defines post route for registering a new user
@@ -69,6 +77,42 @@ router.post("/update-password", async (req, res) => {
   } catch (error) {
     console.error("Error updating password:", error);
     res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/send-otp", async (req, res) => {
+  const { phone } = req.body;
+  try {
+    const verification = await client.verify.v2
+      .services(serviceSid)
+      .verifications.create({
+        to: `+91${phone}`,
+        channel: "sms",
+      });
+    res.status(200).send(verification);
+  } catch (error) {
+    console.log("Error msg:", error.message || error);
+    res.status(500).send(error);
+  }
+});
+
+router.post("/verify-otp", async (req, res) => {
+  const { phone, code } = req.body;
+  try {
+    const verificationCheck = await client.verify.v2
+      .services(serviceSid)
+      .verificationChecks.create({
+        to: `+91${phone}`,
+        code: code,
+      });
+    if (verificationCheck.status === "approved") {
+      res.status(200).send({ message: "Phone no verified" });
+    } else {
+      res.status(400).send({ message: "Invalid OTP" });
+    }
+  } catch (error) {
+    console.log("Error msg:", error.message || error);
+    res.status(500).send(error);
   }
 });
 

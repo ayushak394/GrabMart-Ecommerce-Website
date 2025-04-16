@@ -1,10 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/SignUpPage.css";
+import axios from "axios";
 
 const SignUpPage = () => {
-  const navigate = useNavigate(); // Initialize navigate function - Allows to navigate to different routes
+  const navigate = useNavigate();
   const [error, setError] = useState(""); // State to store any err meassage if generated during registration
+  const [phoneNo, setPhoneNo] = useState("");
+  const [otp, setOtp] = useState("");
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+// Clear error after 5 seconds
+useEffect(() => {
+  if (error) {
+    const timer = setTimeout(() => setError(""), 5000);
+    return () => clearTimeout(timer);
+  }
+}, [error]);
+
+// Clear success message after 5 seconds
+useEffect(() => {
+  if (successMessage) {
+    const timer = setTimeout(() => setSuccessMessage(""), 5000);
+    return () => clearTimeout(timer);
+  }
+}, [successMessage]);
+
+
+  const baseURL = "http://localhost:4000";
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission (would cause page to reload)
@@ -12,9 +36,6 @@ const SignUpPage = () => {
     const username = e.target.username.value; // Extract values entered by user into form fields
     const email = e.target.email.value;
     const password = e.target.password.value;
-
-    const baseURL = "https://grabmart-backend.onrender.com";
-
     // Regex - Using pattern in email addresses to verify if email is valid or not
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -66,6 +87,49 @@ const SignUpPage = () => {
     }
   };
 
+  const sendOtp = async () => {
+    if (!phoneNo) {
+      setError("Please enter a valid phone number");
+      return;
+    }
+
+    setIsSendingOtp(true);
+
+    try {
+      const response = await axios.post(`${baseURL}/auth/send-otp`, {
+        phone: phoneNo,
+      });
+      setSuccessMessage("OTP sent successfully!");
+      console.log(response.data);
+    } catch (error) {
+      setError("Failed to send OTP");
+      console.log(error);
+    } finally {
+      setIsSendingOtp(false);
+    }
+  };
+
+  const verifyOtp = async () => {
+    if (!otp || !phoneNo) {
+      setError("Please enter the OTP!");
+      return;
+    }
+    try {
+      const response = await axios.post(`${baseURL}/auth/verify-otp`, {
+        phone: phoneNo,
+        code: otp,
+      });
+      if (response.data.message === "Phone no verified") {
+        setSuccessMessage("Phone number verified successfully!");
+      } else {
+        setError("Invalid OTP");
+      }
+    } catch (error) {
+      setError("Failed to verify OTP");
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <link
@@ -100,11 +164,47 @@ const SignUpPage = () => {
               />
               <i class="bx bxs-lock-alt"></i>
             </div>
+            <div className="input-box">
+              <input
+                type="number"
+                name="number"
+                placeholder="Enter your Phone Number"
+                required
+                onChange={(e) => setPhoneNo(e.target.value)}
+              />
+              <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <button
+              type="button"
+              className="button"
+              onClick={sendOtp}
+              disabled={isSendingOtp}
+            >
+              {isSendingOtp ? "Sending..." : "Send OTP"}
+            </button>
+
+            <div className="input-box">
+              <input
+                type="number"
+                name="number"
+                placeholder="Enter OTP"
+                onChange={(e) => setOtp(e.target.value)}
+              />
+              <i class="bx bxs-lock-alt"></i>
+            </div>
+
+            <button type="button" class="button" onClick={verifyOtp}>
+              Verify OTP
+            </button>
 
             {error && <h2 className="error-message">{error}</h2>}
+            {successMessage && (
+              <h2 className="success-message">{successMessage}</h2>
+            )}
 
-            <button type="submit" class="button">
-              SignUp
+            <button type="submit" class="registerbutton">
+              Register
             </button>
             <div className="register-link">
               <p>

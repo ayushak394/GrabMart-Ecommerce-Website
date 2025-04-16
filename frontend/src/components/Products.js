@@ -4,11 +4,11 @@ import "../CSS/Products.css";
 
 import { jwtDecode } from "jwt-decode";
 
-const ProductList = ({ sortCriteria, searchQuery }) => {
+const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const baseURL = "https://grabmart-backend.onrender.com";
+  const baseURL = "http://localhost:4000";
 
   useEffect(() => {
     axios
@@ -74,7 +74,6 @@ const ProductList = ({ sortCriteria, searchQuery }) => {
         alert("Please login first.");
         return;
       }
-
       const productData = {
         productId: product._id,
         name: product.name,
@@ -87,6 +86,8 @@ const ProductList = ({ sortCriteria, searchQuery }) => {
         userId,
         product: productData,
       });
+
+      refreshCart();
     } catch (error) {
       console.error("Error adding to cart", error);
     }
@@ -100,7 +101,7 @@ const ProductList = ({ sortCriteria, searchQuery }) => {
           <h3>{product.name}</h3>
           <p className="description">{product.description}</p>
           <p className="price">
-            <b textcolor="black">Price:</b> ${product.price}
+            <b textcolor="black">Price:</b> ₹{product.price}
           </p>
           <button onClick={() => addToCart(product)}>Add to cart</button>
         </div>
