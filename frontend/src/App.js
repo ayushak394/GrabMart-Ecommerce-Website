@@ -6,7 +6,7 @@ import HomePage from "./components/HomePage";
 import ForgotPassword from "./components/ForgotPassword";
 import Cart from "./components/Carts";
 import Profile from "./components/Profile";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
@@ -27,29 +27,33 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const userId = getUserIdFromToken();
+  const baseURL = "http://localhost:4000";
 
-  const baseURL = "https://grabmart-backend.onrender.com";
-
-  useEffect(() => {
+  const refreshCart = useCallback(() => {
     if (!userId) return;
     axios
       .get(`${baseURL}/cart/${userId}`)
       .then((response) => {
-        setCartItems(response.data);
-        const total = response.data.reduce((acc, item) => acc + item.quantity, 0);
+        const cartData = response.data;
+        setCartItems(cartData);
+        const total = cartData.reduce((acc, item) => acc + item.quantity, 0);
         setTotalItems(total);
       })
       .catch((error) => console.error("Error fetching cart", error));
   }, [userId]);
+
+  useEffect(() => {
+    refreshCart();
+  }, [refreshCart]);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignUpPage />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Home" element={<HomePage totalItems={totalItems} />} />
+        <Route path="/Home" element={<HomePage totalItems={totalItems} refreshCart={refreshCart} />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/Cart" element={<Cart totalItems={totalItems} />} />
+        <Route path="/Cart" element={<Cart totalItems={totalItems} refreshCart={refreshCart} />} />
         <Route path="/Profile" element={<Profile totalItems={totalItems} />} />
       </Routes>
     </BrowserRouter>
