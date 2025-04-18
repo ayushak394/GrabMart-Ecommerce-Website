@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/Products.css";
-
 import { jwtDecode } from "jwt-decode";
 
 const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
@@ -22,6 +21,32 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    const lazyImages = document.querySelectorAll(".lazy-image");
+
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove("lazy-image");
+            observerInstance.unobserve(img);
+          }
+        });
+      },
+      { rootMargin: "150px" }
+    );
+
+    lazyImages.forEach((img) => {
+      observer.observe(img);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [products]);
 
   const filterandsortedProducts = products
     .filter((product) =>
@@ -97,7 +122,11 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
     <div className="product-list">
       {filterandsortedProducts.map((product) => (
         <div key={product._id} className="product-card">
-          <img src={product.image} alt={product.name} />
+          <img
+            data-src={product.image}
+            alt={product.name}
+            className="lazy-image"
+          />
           <h3>{product.name}</h3>
           <p className="description">{product.description}</p>
           <p className="price">
