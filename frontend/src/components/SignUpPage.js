@@ -5,7 +5,7 @@ import axios from "axios";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState(""); // State to store any err meassage if generated during registration
+  const [error, setError] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [otp, setOtp] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);

@@ -41,11 +41,7 @@
 .profile-container {
   width: 90%;
   padding: 40px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.5)
-  );
+  background: linear-gradient(135deg, #1a1a2e, #424281);;
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -58,11 +54,7 @@
 
 .feedback-section {
   width: 90%;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.5)
-  );
+  background: #31315f;
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
@@ -77,12 +69,11 @@
 
 .profile-container input[type="file"] {
   padding: 12px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 2px dashed #4caf50;
+  border: 2px solid #4caf50;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #333;
+  color: white;
   font-size: 16px;
   text-align: center;
   width: 30%;
@@ -94,7 +85,7 @@
 .profile-container input[type="file"]:hover {
   background-color: rgba(76, 175, 80, 0.1);
   border-color: #388e3c;
-  color: #222;
+  color: white;
   box-shadow: 0 6px 12px rgba(76, 175, 80, 0.3);
 }
 
@@ -137,12 +128,17 @@
   font-weight: 600;
   letter-spacing: 1px;
   margin-top: 15px;
-  color: #333;
-  text-transform: uppercase;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  letter-spacing: 2px; 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+
+
 .feedback-section h1 {
-  color: #333;
+  color: white;
+  font-family: "Raleway", sans-serif;
 }
 .feedback-section textarea {
   width: 100%;
@@ -155,9 +151,27 @@
   transition: border-color 0.3s ease;
 }
 
+.feedback-section textarea {
+  width: 100%;
+  height: 5rem;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 2px solid #4caf50;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(135deg, #2b2b4a, #3a3a6a);
+  color: #fff;
+  resize: vertical;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .feedback-section textarea:focus {
-  border-color: #4caf50;
+  border-color: #66bb6a;
   outline: none;
+  box-shadow: 0 6px 14px rgba(76, 175, 80, 0.3);
+  background: linear-gradient(135deg, #353567, #4a4a85);
 }
 
 .feedback-section button {
