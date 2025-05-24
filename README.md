@@ -7,8 +7,6 @@
 [![Twilio](https://img.shields.io/badge/Twilio-FF8A00?style=flat&logo=twilio&logoColor=white)](https://www.twilio.com/)
 [![Cashfree](https://img.shields.io/badge/Cashfree-00457C?style=flat&logo=paypal&logoColor=white)](https://www.cashfree.com/)
 
----
-
 GrabMart is a full-stack e-commerce web application built using the MERN stack — MongoDB, Express.js, React, and Node.js — with secure OTP authentication via Twilio and payment processing via Cashfree.
 
 ## 🚀 Features
@@ -20,7 +18,6 @@ GrabMart is a full-stack e-commerce web application built using the MERN stack �
 - 📷 File uploads for user profile pictures
 - 🔐 JWT-based user session authentication
 
----
 
 ## 📦 Installation
 
@@ -31,7 +28,6 @@ Follow these steps to set up and run the project locally:
 - Node.js (LTS version)
 - MongoDB (Local with Compass or Atlas Cloud)
 
----
 
 ## 🛠 Setup Guide
 
@@ -91,17 +87,15 @@ Start the Frontend:
 cd ../frontend
 npm start
 ```
----
 
-🗂️ **File Uploads** :
+## 🗂️ File Uploads
 
 Make sure a directory named uploads exists in the backend:
 ```bash
 mkdir backend/uploads
 ```
----
 
-🛠 **Tech Stack**
+## 🛠 Tech Stack
 
 Frontend: React, HTML5, CSS3
 
@@ -113,8 +107,6 @@ Auth: JWT + Twilio OTP
 
 Payments: Cashfree API
 
----
-
-📜 **License** :
+## 📜 License
 
 This project is created for learning and educational purposes. Contributions and improvements are welcome!
