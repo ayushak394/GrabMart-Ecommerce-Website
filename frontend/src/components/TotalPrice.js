@@ -40,7 +40,7 @@ const TotalPrice = ({ cartItems, totalPrice }) => {
           amount: totalPrice,
           name: "Test User",
           email: "test@example.com",
-          phone: "9999999999",
+          phone: "1234567890",
         }),
       });
 

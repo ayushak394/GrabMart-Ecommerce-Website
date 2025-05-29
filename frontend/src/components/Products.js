@@ -5,6 +5,7 @@ import { jwtDecode } from "jwt-decode";
 
 const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
   const [products, setProducts] = useState([]);
+  const [productRatings, setProductRatings] = useState({});
   const [loading, setLoading] = useState(true);
 
   const baseURL = process.env.REACT_APP_API_URL;
@@ -14,6 +15,12 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
       .get(`${baseURL}/products`)
       .then((response) => {
         setProducts(response.data);
+        const ratings = {};
+        response.data.forEach((product) => {
+          ratings[product._id] = Math.floor(Math.random() * 3) + 3; 
+        });
+        setProductRatings(ratings);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -48,7 +55,7 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
     };
   }, [products]);
 
-  const filterandsortedProducts = products
+  const filteredAndSortedProducts = products
     .filter((product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
@@ -99,6 +106,7 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
         alert("Please login first.");
         return;
       }
+
       const productData = {
         productId: product._id,
         name: product.name,
@@ -118,20 +126,24 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
     }
   };
 
+  const renderStars = (rating) => {
+    return "★".repeat(rating) + "☆".repeat(5 - rating);
+  };
+
   return (
     <div className="product-list">
-      {filterandsortedProducts.map((product) => (
+      {filteredAndSortedProducts.map((product) => (
         <div key={product._id} className="product-card">
-          <img
-            data-src={product.image}
-            alt={product.name}
-            className="lazy-image"
-          />
-          <h3>{product.name}</h3>
-          <p className="description">{product.description}</p>
-          <p className="price">
-            <b textcolor="black">Price:</b> ₹{product.price}
-          </p>
+          <div className="image-wrapper">
+            <img
+              data-src={product.image}
+              alt={product.name}
+              className="lazy-image"
+            />
+          </div>
+          <h3 className="product-name">{product.name}</h3>
+          <p className="rating">Rating: {renderStars(productRatings[product._id])}</p>
+          <p className="price">Price: ${product.price}</p>
           <button onClick={() => addToCart(product)}>Add to cart</button>
         </div>
       ))}

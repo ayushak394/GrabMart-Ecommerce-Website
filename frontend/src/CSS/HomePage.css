@@ -1,27 +1,27 @@
 .HomePage {
-  background: linear-gradient(135deg, #1a1a2e, #252548);
+  background: #e8ecf4;
   min-height: 100vh;
   overflow: hidden;
 }
+
 
 .thank-you-msg {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #4caf50; /* Green background for success */
+  background-color: #3CB371;
   color: white;
   padding: 20px 40px;
   border-radius: 12px;
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  z-index: 1000; /* Ensure it appears on top */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
   animation: fadeInOut 4s ease-in-out forwards, bounceEffect 1.5s ease-in-out infinite;
 }
 
-/* Fading effect */
 @keyframes fadeInOut {
   0% {
     opacity: 0;
@@ -41,7 +41,6 @@
   }
 }
 
-/* Bouncing effect */
 @keyframes bounceEffect {
   0%, 100% {
     transform: translate(-50%, -50%);
@@ -57,7 +56,6 @@
   }
 }
 
-/* Pop-in effect for the text */
 @keyframes textPop {
   0% {
     transform: scale(0.8);

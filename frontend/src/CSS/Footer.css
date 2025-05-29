@@ -1,63 +1,55 @@
+/* Footer styles */
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 70px;
-  background: linear-gradient(135deg, #1a1a2e, #252547);
+  background-color: #f3f4f6;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 0px 20px;
-  border: 3px solid transparent;
-  box-shadow: 0 3px 15px rgba(0, 140, 255, 0.6);
-  transition: box-shadow 0.3s ease-in-out;
+  padding: 0 24px;
+  border-top: 1px solid #e5e7eb; 
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04); 
 }
+
 .Grabmarts {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; 
   align-items: center;
-  position: relative;
-  padding-left: 20px;
+  padding-left: 0; 
 }
 
 .Grabmarts i {
-  justify-content: flex-start;
   font-size: 45px;
-  left: 14rem;
-  top: 1.9rem;
-  color: white;
+  color: #374151; 
+  margin-right: 12px;
 }
 
 .Grabmarts h1 {
-  color: white;
-  justify-content: center;
-  align-items: center;
-  top: 0.6rem;
+  color: #1f2937; 
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .copyright {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-  color: white;
+  
+  position: static;
+  color: #6b7280; 
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-.copyright a {
-  color: #1db954;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-.copyright a:hover {
-  color: #ea4c89;
-  text-decoration: underline;
+.map-and-contact {
+  padding-bottom: 70px;
 }

@@ -8,7 +8,7 @@
 }
 
 .CartPage {
-  background: linear-gradient(135deg, #1a1a2e, #252548);
+  background: #e8ecf4; 
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;

@@ -14,15 +14,16 @@ const Header = ({
     localStorage.removeItem("token");
     navigate("/login");
   };
+
   return (
-    <div class="button-container">
+    <div className="button-container">
       <Link to="/Home">
-        <button class="button">
+        <button className="button">
           <svg
-            class="icon"
+            className="icon"
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 1024 1024"
             height="1em"
             width="1em"
@@ -32,35 +33,17 @@ const Header = ({
           </svg>
         </button>
       </Link>
-      {showNavigationBar && (
-        <div class="button inputBox_container">
-          <svg
-            class="search_icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 48 48"
-            alt="search icon"
-          >
-            <path d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"></path>
-          </svg>
-          <input
-            class="inputBox"
-            id="inputBox"
-            type="text"
-            placeholder="Search For Products"
-            onChange={(e) => setSearchQuery(e.target.value)}
-          ></input>
-        </div>
-      )}
+
       <Link to="/Cart">
-        <button class="button">
+        <button className="button">
           <svg
-            class="icon"
+            className="icon"
             stroke="currentColor"
             fill="none"
-            stroke-width="2"
+            strokeWidth="2"
             viewBox="0 0 24 24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,12 +57,12 @@ const Header = ({
       </Link>
 
       <Link to="/Profile">
-        <button class="button">
+        <button className="button">
           <svg
-            class="icon"
+            className="icon"
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             height="1em"
             width="1em"
@@ -93,17 +76,39 @@ const Header = ({
       <button className="button logout-button" onClick={handleLogout}>
         <svg
           className="icon"
-          stroke="currentColor"
-          fill="currentColor"
-          strokeWidth="0"
-          viewBox="0 0 24 24"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
+            stroke="currentColor"
+            fill="currentColor"
+            strokeWidth="0"
+            viewBox="0 0 24 24"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M13 3a1 1 0 011 1v6h-2V5H6v14h6v-5h2v6a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1h8zm3.707 7.293a1 1 0 010 1.414L17.414 13H9a1 1 0 110-2h8.414l-.707-.707a1 1 0 011.414-1.414l2 2z"></path>
+          <path d="M15 11H8v2h7v4l6-5-6-5z"></path>
+          <path d="M5 21h7v-2H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path>
         </svg>
       </button>
+
+      {showNavigationBar && (
+        <div className="inputBox_container">
+          <svg
+            className="search_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            alt="search icon"
+          >
+            <path d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"></path>
+          </svg>
+
+          <input
+            className="inputBox"
+            id="inputBox"
+            type="text"
+            placeholder="Search For Products"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          ></input>
+        </div>
+      )}
     </div>
   );
 };
