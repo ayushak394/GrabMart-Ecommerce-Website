@@ -11,10 +11,10 @@ GrabMart is a full-stack e-commerce web application built using the MERN stack �
 
 ## 🚀 Features
 
-- ✅ User registration and login with **OTP authentication via Twilio**
+- ✅ User registration and login with OTP authentication via Twilio
 - 🛍️ Product listing and category-based filtering
 - 🛒 Cart management (Add/Remove/Quantity update)
-- 💳 **Secure Checkout** with **Cashfree** payment gateway integration
+- 💳 Secure Checkout with Cashfree payment gateway integration
 - 📷 File uploads for user profile pictures
 - 🔐 JWT-based user session authentication
 
