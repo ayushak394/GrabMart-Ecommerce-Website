@@ -18,7 +18,7 @@ const getUserIdFromToken = () => {
   }
 };
 
-const baseURL = "http://localhost:4000";
+  const baseURL = process.env.REACT_APP_API_URL;
 
 const Profile = ({ totalItems }) => {
   useTokenCheck();

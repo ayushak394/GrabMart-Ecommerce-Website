@@ -27,7 +27,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const userId = getUserIdFromToken();
-  const baseURL = "http://localhost:4000";
+  const baseURL = process.env.REACT_APP_API_URL;
 
   const refreshCart = useCallback(() => {
     if (!userId) return;

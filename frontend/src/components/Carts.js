@@ -26,7 +26,7 @@ const Cart = ({ totalItems, refreshCart }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const userId = getUserIdFromToken();
 
-  const baseURL = "http://localhost:4000";
+  const baseURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (!userId) return;

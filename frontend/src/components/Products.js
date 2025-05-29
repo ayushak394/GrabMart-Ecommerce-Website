@@ -7,7 +7,7 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const baseURL = "http://localhost:4000";
+  const baseURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     axios

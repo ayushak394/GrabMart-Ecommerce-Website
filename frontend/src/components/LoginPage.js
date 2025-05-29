@@ -13,7 +13,7 @@ const LoginPage = () => {
     const password = e.target.password.value;
     const body = { username, password };
 
-    const baseURL = "http://localhost:4000";
+  const baseURL = process.env.REACT_APP_API_URL;
 
     try {
       const response = await fetch(`${baseURL}/auth/login`, {
