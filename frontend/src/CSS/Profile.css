@@ -1,142 +1,254 @@
+/* Profile.css */
+
 .ProfilePage {
   background: #f9fafb;
-  min-height: 100%;
-  min-width: 100%;
+  min-height: 100vh;
+  /* Removed overflow-y: auto here to let inner sections manage their scroll */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 40px;
+  padding-bottom: 70px;
   font-family: "Roboto", sans-serif;
   color: #222;
   box-sizing: border-box;
   width: 100%;
 }
 
+.top-sections-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem; /* Slightly increased gap for more breathing room */
+  width: 100%;
+  height: 100%; /* Keep height at 100% to fill parent */
+  max-width: 1200px;
+  justify-content: center;
+  margin: 2.5rem 0; /* Adjusted margin for consistent spacing */
+}
+
 .profile-container,
-.feedback-section,
-.contact-us-section {
-  width: 100%;          
-  max-width: none;      
-  padding: 40px 30px;    
-  margin: 2rem 0;       
+.feedback-section {
+  flex: 1;
+  min-width: 400px; /* Increased min-width for better display on medium screens */
+  max-width: 550px; /* Added max-width to prevent them from getting too wide */
+  padding: 40px 30px;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 25px; /* Adjusted gap inside containers */
   color: #222;
   box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
 
+.profile-container:hover,
+.feedback-section:hover,
+.contact-us-section:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+
+.contact-us-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 40px 30px;
+  margin: 2.5rem 0; /* Adjusted margin */
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px; /* Adjusted gap */
+  color: #222;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+
+/* Section Headers */
+.profile-container h2,
+.feedback-section h2,
+.contact-us-section h2 {
+  font-size: 1.8rem; /* Slightly larger, more impactful headings */
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem; /* More space below heading */
+  text-align: center;
+  width: 100%; /* Ensure it spans full width */
+  border-bottom: 2px solid rgba(139, 148, 248, 0.3); /* Subtle bottom border */
+  padding-bottom: 0.75rem; /* Padding for the border */
+  color: transparent;
+  background: linear-gradient(90deg, #6366f1, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 4px rgba(99, 102, 241, 0.2);
+}
+
+
 .profile-pic {
-  width: 320px;
-  height: 320px;
+  width: 200px; /* Slightly smaller for a more balanced look */
+  height: 200px; /* Maintain aspect ratio */
   border-radius: 50%;
   object-fit: cover;
-  margin-top: 3rem;
+  margin-top: 1rem; /* Reduced top margin */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 4px solid #8b94f8; /* Added a subtle border */
 }
 
 .profile-pic:hover {
-  transform: scale(1.05);
+  transform: scale(1.08); /* Slightly more prominent hover */
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
 }
 
+.profile-pic-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 4px dashed #ccc; /* Dashed border for placeholder */
+  margin-top: 1rem;
+}
+
+
 .profile-container input[type="file"] {
-  padding: 12px;
-  border: 2px solid #bbb;
-  border-radius: 12px;
+  padding: 10px; /* Reduced padding */
+  border: 1px solid #ccc; /* Thinner border */
+  border-radius: 10px; /* Slightly smaller radius */
   cursor: pointer;
   transition: all 0.3s ease;
   color: #444;
-  font-size: 16px;
+  font-size: 15px; /* Slightly smaller font */
   text-align: center;
-  width: 30%;
+  width: 70%; /* Increased width for better visibility */
   display: block;
   outline: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); /* Lighter shadow */
+  background-color: #fff; /* White background */
 }
 
 .profile-container input[type="file"]:hover {
-  background-color: #f0f0f0;
-  border-color: #999;
+  background-color: #f5f5f5;
+  border-color: #a0a0a0;
   color: #222;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .profile-container input[type="file"]::-webkit-file-upload-button {
-  background: linear-gradient(135deg, #e0e0e0, #cfcfcf);
-  color: #222;
+  background: linear-gradient(135deg, #7c83f6, #636af1); /* More vibrant gradient */
+  color: #fff; /* White text */
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
+  padding: 8px 12px; /* Smaller padding */
+  border-radius: 6px; /* Smaller radius */
+  font-size: 13px; /* Smaller font */
+  font-weight: normal; /* Normal weight */
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .profile-container input[type="file"]::-webkit-file-upload-button:hover {
-  background: linear-gradient(135deg, #d4d4d4, #b8b8b8);
+  background: linear-gradient(135deg, #636af1, #4c53d9); /* Darker on hover */
 }
 
 .uploadprofile {
-  padding: 12px 36px;
+  padding: 14px 40px; /* Increased padding for better click area */
   font-weight: 600;
-  font-size: 18px;
-  border-radius: 12px;
+  font-size: 17px; /* Slightly smaller font */
+  border-radius: 14px; /* Larger border-radius */
   color: #fff;
   background-color: #8b94f8;
   cursor: pointer;
   border: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 8px 24px rgb(139 148 248 / 0.5);
-  letter-spacing: 1px;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(139, 148, 248, 0.4); /* Lighter shadow */
+  letter-spacing: 0.8px;
 }
 
 .uploadprofile:hover {
   background-color: #6f77eb;
-  transform: scale(1.04);
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 10px 25px rgba(139, 148, 248, 0.6); /* More pronounced shadow */
 }
 
-.username, 
+.uploadprofile:disabled {
+  background-color: #b0b0b0; /* Grey out when disabled */
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+
+.username,
 .email {
-  font-weight: 500;
-  font-size: 28px;
-  margin-top: 2rem;
+  font-size: 1.1rem; /* Slightly smaller font for clarity */
+  margin-top: 0.75rem; /* Reduced top margin */
+  margin-bottom: 0.25rem; /* Reduced bottom margin */
   text-align: center;
-  color: #333;
+  color: #444; /* Slightly darker grey */
+  font-weight: normal;
+  line-height: 1.5; /* Better readability */
 }
 
-.feedback-section h1 {
-  font-weight: 600;
-  margin-bottom: 20px;
-  font-size: 24px;
+.username b,
+.email b {
+  font-weight: 600; /* Use 600 for semi-bold */
+  color: #222; /* Darker for emphasis */
+  margin-right: 8px; /* Space between label and value */
+}
+
+.loading-state {
+  margin-top: 50px;
+  font-size: 1.2rem;
+  color: #666;
   text-align: center;
 }
+
+
+/* Feedback Section */
 
 .feedback-section textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 400px; /* INCREASED HEIGHT from 120px to 180px */
   padding: 15px;
   border-radius: 16px;
   border: 1px solid #bbb;
   font-size: 16px;
-  resize: vertical;
+  resize: none;
+  overflow-y: auto;
+
+  /* Scrollbar hiding for Webkit browsers (Chrome, Safari, Edge, newer Opera) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Scrollbar hiding for Firefox */
+  scrollbar-width: none;
+
+  /* Scrollbar hiding for Internet Explorer and older Edge */
+  -ms-overflow-style: none;
+
   font-family: "Roboto", sans-serif;
   transition: border-color 0.3s ease;
   outline: none;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .feedback-section textarea:focus {
   border-color: #8b94f8;
-  box-shadow: 0 0 8px rgba(139,148,248,0.6);
+  box-shadow: 0 0 8px rgba(139, 148, 248, 0.6);
 }
 
 .feedback-section button {
@@ -158,7 +270,16 @@
   background-color: #6f77eb;
 }
 
-.contact-us-section h1 {
+.feedback-section button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+
+/* Contact Us Section */
+.contact-us-section h1 { /* Changed to h2 in JSX, update CSS too */
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 25px;
@@ -183,17 +304,64 @@
 }
 
 .map-and-contact iframe {
-  height: 300px;
+  height: 450px;
   border: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Added shadow to map */
 }
 
 .contact-info {
-  margin-top: 35px;
+  margin-top: 1rem; /* Align with map */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 50px;
-  font-size: 18px;
+  justify-content: center; /* Center content vertically */
+  gap: 50px; /* Reduced gap for more compact info */
+  font-size: 17px; /* Slightly smaller font */
+  color: #444;
+  padding: 10px;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.contact-icon {
+  font-size: 1.2rem; /* same size for all icons */
+  color: #6366f1;
+  flex-shrink: 0;
+}
+
+/* Social Media Links container */
+.social-media-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
   color: #444;
 }
 
+/* Social media icons styled with same size and colors */
+.social-media-links .contact-icon {
+  font-size: 1.2rem;
+  color: #6366f1;
+  margin-right: 8px;
+}
+
+.social-icon {
+  font-size: 1.2rem; /* same icon size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #6366f1;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #4338ca; /* darker on hover */
+}

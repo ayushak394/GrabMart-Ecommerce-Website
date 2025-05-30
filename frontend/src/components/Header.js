@@ -52,9 +52,30 @@ const Header = ({
             <circle cx="20" cy="21" r="1"></circle>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
-          <p className="totalitems">{totalItems}</p>
+          <span className="totalitems">{totalItems}</span>
         </button>
       </Link>
+
+{showNavigationBar && (
+        <div className="inputBox_container">
+          <svg
+            className="search_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            alt="search icon"
+          >
+            <path d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"></path>
+          </svg>
+
+          <input
+            className="inputBox"
+            id="inputBox"
+            type="text"
+            placeholder="Search For Products"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          ></input>
+        </div>
+      )}
 
       <Link to="/Profile">
         <button className="button">
@@ -76,39 +97,18 @@ const Header = ({
       <button className="button logout-button" onClick={handleLogout}>
         <svg
           className="icon"
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 24 24"
-            height="1em"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
+          stroke="currentColor"
+          fill="currentColor"
+          strokeWidth="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M15 11H8v2h7v4l6-5-6-5z"></path>
           <path d="M5 21h7v-2H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path>
         </svg>
       </button>
-
-      {showNavigationBar && (
-        <div className="inputBox_container">
-          <svg
-            className="search_icon"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 48 48"
-            alt="search icon"
-          >
-            <path d="M46.599 46.599a4.498 4.498 0 0 1-6.363 0l-7.941-7.941C29.028 40.749 25.167 42 21 42 9.402 42 0 32.598 0 21S9.402 0 21 0s21 9.402 21 21c0 4.167-1.251 8.028-3.342 11.295l7.941 7.941a4.498 4.498 0 0 1 0 6.363zM21 6C12.717 6 6 12.714 6 21s6.717 15 15 15c8.286 0 15-6.714 15-15S29.286 6 21 6z"></path>
-          </svg>
-
-          <input
-            className="inputBox"
-            id="inputBox"
-            type="text"
-            placeholder="Search For Products"
-            onChange={(e) => setSearchQuery(e.target.value)}
-          ></input>
-        </div>
-      )}
     </div>
   );
 };

@@ -13,9 +13,11 @@
 .product-card {
   display: flex;
   flex-direction: column;
+  /* Changed to space-between to push button to bottom, 
+     but with controlled intermediate elements */
   justify-content: space-between;
   width: 270px;
-  height: 400px;
+  height: 400px; /* Fixed height for uniformity */
   border-radius: 14px;
   background-color: #f5f5f7;
   color: #fff;
@@ -24,16 +26,17 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  border: 2px solid D6CCC2;
-  padding-bottom: 15px;
+  border: 2px solid #d6ccc2; /* Fixed color code */
+  padding-bottom: 15px; /* Keep consistent padding for content above the button */
 }
 
 .product-card .image-wrapper {
   width: 100%;
   height: 240px;
   overflow: hidden;
-  border-radius: 5px;
-  flex-shrink: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  flex-shrink: 0; /* Prevents image from shrinking */
   position: relative;
 }
 
@@ -56,44 +59,46 @@
   font-size: 1.1rem;
   font-weight: 600;
   margin-left: 10px;
-  margin-top: 20px;
   color: #3e3e3e;
-  white-space: pre-wrap;
-  text-overflow: ellipsis;
   padding: 0 8px;
+  /* --- IMPORTANT: New properties for uniform name display --- */
+  height: 3.3em; /* Approximate height for 2 lines (adjust line-height and font-size together) */
+  line-height: 1.65em; /* Controls line height */
+  overflow: hidden; /* Hides overflowing text */
+  text-overflow: ellipsis; /* Adds "..." for truncated text */
+  display: -webkit-box; /* Required for -webkit-line-clamp */
+  -webkit-line-clamp: 2; /* Limits text to 2 lines */
+  -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
+  white-space: normal; /* Allow text to wrap within the defined lines */
+  /* --- End of New properties --- */
+  flex-shrink: 0; /* Prevent the name from shrinking */
 }
 
-.product-card p.description {
-  height: 15%;
+.rating {
   font-size: 0.9em;
-  overflow-y: auto;
-  text-align: left;
-  margin-left: 10px;
-  padding: 5px 8px;
-  border-radius: 4px;
-  margin-top: px;
-  backdrop-filter: blur(6px);
-}
-
-.product-card p.description::-webkit-scrollbar {
-  display: none;
+  color: #f4c542;
+  margin-left: 17px;
+  flex-shrink: 0; /* Prevent rating from shrinking */
 }
 
 .price {
-  height: 15%;
+  /* This rule exists in your CSS but its height is 15% and margin top is 5px and margin left is 10px from above */
+  /* If you want more control, define explicit margin-top/bottom instead of height here */
   font-size: 1.1em;
   font-weight: bold;
   color: #6e6e6e;
   text-shadow: 0 2px 5px rgba(255, 255, 255, 0.3);
   display: flex;
-  margin-top: 5px;
   margin-left: 10px;
+  margin-bottom: 5px;
   padding: 0 8px;
+  flex-shrink: 0; /* Prevent price from shrinking */
 }
 
 .product-card button {
   width: 90%;
-  padding: 15px;
+  padding-top: 10px;
+  padding-bottom: 15px;
   background: #1c1c1e;
   color: #f9f9f9;
   font-size: 1em;
@@ -106,13 +111,15 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  margin-bottom: 1px;
   margin-left: 15px;
-}
-
-.rating {
-  font-size: 0.9em;
-  color: #f4c542;
-  margin-left: 17px;
-  margin-top: 10px;
+  /* Uniform margin for the button at the bottom of the card */
+   /* Pushes the button to the bottom if there's extra space */
+  margin-right: 15px; /* Keep consistent with margin-left */
+  /* Ensure button maintains its size and doesn't shrink */
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  height: 45px; /* Explicitly set button height for consistency */
+  display: flex; /* Use flex to center text vertically if needed */
+  align-items: center;
+  justify-content: center;
 }

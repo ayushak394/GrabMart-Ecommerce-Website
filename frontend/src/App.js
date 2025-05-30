@@ -51,9 +51,17 @@ function App() {
       <Routes>
         <Route path="/" element={<SignUpPage />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Home" element={<HomePage totalItems={totalItems} refreshCart={refreshCart} />} />
+        <Route
+          path="/Home"
+          element={
+            <HomePage totalItems={totalItems} refreshCart={refreshCart} />
+          }
+        />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
-        <Route path="/Cart" element={<Cart totalItems={totalItems} refreshCart={refreshCart} />} />
+        <Route
+          path="/Cart"
+          element={<Cart totalItems={totalItems} refreshCart={refreshCart} />}
+        />
         <Route path="/Profile" element={<Profile totalItems={totalItems} />} />
       </Routes>
     </BrowserRouter>

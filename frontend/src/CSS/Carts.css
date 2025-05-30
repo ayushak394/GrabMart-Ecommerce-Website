@@ -37,6 +37,7 @@
   box-sizing: border-box;
   border: 2px solid rgba(255, 255, 255, 0.1);
   margin-top: 2.5rem;
+  margin-left: 1rem;
 }
 
 .cart-item img {
@@ -79,7 +80,7 @@
 .cart-item .remove-button,
 .cart-item .decrease-button {
   width: 90%;
-  padding: 15px;
+  padding: 12px;
   background: #1c1c1e;
   color: #f9f9f9;
   font-size: 1em;
@@ -93,5 +94,5 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 1px;
-  margin-left: 15px;
+  margin-left: 5px;
 }

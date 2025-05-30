@@ -1,35 +1,46 @@
 const express = require("express");
-const multer = require("multer"); // middleware for handling file uploads
+const multer = require("multer");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("cloudinary").v2;
 const User = require("../Models/UserSchema");
 const Feedback = require("../Models/Feedback");
-const path = require("path");
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  // stores files on the servers disk
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // save the images to the uploads folder
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // helps create a unique filename by using the timestamp and the file extension
+// Configure Cloudinary with your env variables
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// Set up Cloudinary storage for multer
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "profile_pics", // folder name inside your Cloudinary account
+    allowed_formats: ["jpg", "jpeg", "png"],
+    transformation: [{ width: 500, height: 500, crop: "limit" }], // optional resizing
   },
 });
 
-const upload = multer({ storage }); // an instance of multer congifured to use the above settings
+const upload = multer({ storage });
 
 router.post(
   "/uploadProfilePic/:userId",
   upload.single("profilePic"),
   async (req, res) => {
-    // upload single allows only one file with field name profilePic(name for incoming file from frontend)
     try {
       const userId = req.params.userId;
-      const imagePath = `/uploads/${req.file.filename}`; // path to access the image
+      if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
+      // Cloudinary URL of the uploaded image
+      const profilePicUrl = req.file.path;
+
+      // Update user profilepic field with Cloudinary URL
       const user = await User.findByIdAndUpdate(
         userId,
-        { profilepic: imagePath },
+        { profilepic: profilePicUrl },
         { new: true }
       );
 
@@ -37,10 +48,13 @@ router.post(
 
       res.json({ message: "Profile Pic Updated", profilePic: user.profilepic });
     } catch (error) {
-      res.status(505).json({ error: "Error uploading image" });
+      console.error(error);
+      res.status(500).json({ error: "Error uploading image" });
     }
   }
 );
+
+// The rest of your routes remain unchanged...
 
 router.get("/getProfilePic/:userId", async (req, res) => {
   try {

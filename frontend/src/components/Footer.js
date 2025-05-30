@@ -9,7 +9,7 @@ const Footer = () => {
         rel="stylesheet"
       />
       <div className="Grabmarts">
-        <h1>Grab Mart</h1>
+        <h1>GrabMart</h1>
         <i className="bx bx-cart-add"></i>
       </div>
 

@@ -7,14 +7,20 @@
   padding: 24px 20px;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: flex; /* Keep as flex container */
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start (left) */
   background-color: #f9fafb;
-  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05); 
-  border-right: 1px solid #e5e7eb; 
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #e5e7eb;
   transition: all 0.3s ease-in-out;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.total-price::-webkit-scrollbar {
+  display: none;
 }
 
 .total-price h1 {
@@ -24,10 +30,8 @@
   text-transform: uppercase;
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
-
   width: 100%;
   text-align: center;
-
   color: transparent;
   background: linear-gradient(90deg, #6366f1, #a78bfa);
   -webkit-background-clip: text;
@@ -35,7 +39,6 @@
   -webkit-text-fill-color: transparent;
   text-shadow: 1px 1px 4px rgba(99, 102, 241, 0.3);
   border-bottom: 2px solid rgba(167, 139, 250, 0.4);
-
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -45,21 +48,27 @@
 }
 
 .total-price .price-details {
-  margin-top: 20px;
+  margin-top: 5px;
   width: 100%;
   overflow-y: auto;
   max-height: 60%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.total-price .price-details::-webkit-scrollbar {
+  display: none;
 }
 
 .total-price .price-details p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1rem; 
+  font-size: 1rem;
   padding: 5px;
   margin-bottom: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
-  color: #4b5563; 
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #4b5563;
 }
 
 .total-price .price-details img {
@@ -70,10 +79,11 @@
   border-radius: 8px;
 }
 
+/* This is probably no longer needed as price-summary handles total display */
 .total-price .price-value {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #374151; 
+  color: #374151;
   margin-top: 10px;
   text-align: center;
 }
@@ -87,8 +97,10 @@
   font-size: 1rem;
   font-weight: 600;
   padding: 12px 18px;
-  margin: 6px 0;
-  border: 1.5px solid #d1d5db; 
+  /* Key change: Push button to bottom */
+  margin-top: auto; /* This is the magic! */
+  margin-bottom: 6px; /* Keep consistent bottom margin if desired */
+  border: 1.5px solid #d1d5db;
   border-radius: 12px;
   width: 100%;
   cursor: pointer;
@@ -100,21 +112,52 @@
 
 .total-price .button:hover,
 .total-price .button:focus-visible {
-  background-color: #f3f4f6; 
-  border-color: #9ca3af;    
-  color: #111827;            
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+  color: #111827;
   outline: none;
   box-shadow: none;
 }
 
 .total-price .button:active {
-  background-color: #e5e7eb; 
+  background-color: #e5e7eb;
   transform: scale(0.98);
   box-shadow: none;
 }
 
-@media (max-height: 700px) {
-  .total-price {
-    height: calc(100vh - 5rem);
-  }
+.price-summary {
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px dashed #d1d5db;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-summary p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  color: #4b5563;
+  padding: 0 5px;
+}
+
+.price-summary .final-total {
+  font-weight: 700;
+  color: #1a1a1a;
+  border-top: 2px solid #8b94f8;
+  padding-top: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-summary .final-total p {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
 }

@@ -5,6 +5,17 @@ import useTokenCheck from "../hooks/tokencheck";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import "../CSS/Profile.css";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaClock,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaUsers,
+} from "react-icons/fa";
 
 const getUserIdFromToken = () => {
   const token = localStorage.getItem("token");
@@ -19,7 +30,7 @@ const getUserIdFromToken = () => {
   }
 };
 
-const baseURL = process.env.REACT_APP_API_URL;
+  const baseURL = process.env.REACT_APP_API_URL;
 
 const Profile = ({ totalItems }) => {
   useTokenCheck();
@@ -127,36 +138,46 @@ const Profile = ({ totalItems }) => {
       style={{ minHeight: "100vh", overflowY: "auto" }}
     >
       <Header showNavigationBar={false} totalItems={totalItems} />
-      <div className="profile-container">
-        {profilePic && (
-          <img
-            src={`${baseURL}${profilePic}`}
-            alt="Profile"
-            className="profile-pic"
+
+      <div className="top-sections-container">
+        {/* Profile Container */}
+        <div className="profile-container">
+          {profilePic && (
+            <img src={profilePic} alt="Profile" className="profile-pic" />
+          )}
+          <input
+            type="file"
+            accept=".jpg, .jpeg, .png, image/png, image/jpeg"
+            onChange={handleFileChange}
           />
-        )}
-        <input
-          type="file"
-          accept=".jpg, .jpeg, .png, image/png, image/jpeg"
-          onChange={handleFileChange}
-        />
-        <button onClick={handleUpload} className="uploadprofile">
-          Update Profile Picture
-        </button>
-        {userName && <h1 className="username">Your Username: {userName}</h1>}
-        {email && <h1 className="email">Your Email: {email}</h1>}
+          <button onClick={handleUpload} className="uploadprofile">
+            Update Profile Picture
+          </button>
+          {userName && (
+            <h1 className="username">
+              <b>Username:</b> {userName}
+            </h1>
+          )}
+          {email && (
+            <h1 className="email">
+              <b>Email:</b> {email}
+            </h1>
+          )}
+        </div>
+
+        {/* Feedback Section */}
+        <div className="feedback-section">
+          <h1>We would love to hear your feedback!</h1>
+          <textarea
+            value={feedback}
+            onChange={handleFeedbackChange}
+            placeholder="Leave your feedback here..."
+          />
+          <button onClick={handleSubmitFeedback}>Submit Feedback</button>
+        </div>
       </div>
 
-      <div className="feedback-section">
-        <h1>We would love to hear your feedback!</h1>
-        <textarea
-          value={feedback}
-          onChange={handleFeedbackChange}
-          placeholder="Leave your feedback here..."
-        />
-        <button onClick={handleSubmitFeedback}>Submit Feedback</button>
-      </div>
-
+      {/* Contact Us Section */}
       <div className="contact-us-section">
         <h1>Contact Us</h1>
         <div className="map-and-contact">
@@ -171,17 +192,64 @@ const Profile = ({ totalItems }) => {
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
           <div className="contact-info">
-            <div>
-              <strong>Phone:</strong> +1 234 567 890
-            </div>
-            <div>
-              <strong>Email:</strong> contact@example.com
-            </div>
-            <div>
-              <strong>Address:</strong> 123 Main Street, San Francisco, CA
-            </div>
-            <div>
-              <strong>Office Hours:</strong> Mon-Fri, 9am - 6pm
+            <p>
+              <FaPhoneAlt /> <strong>Phone:</strong> +1 (555) 987-6543
+            </p>
+            <p>
+              <FaEnvelope /> <strong>Email:</strong> support@grabmarts.com
+            </p>
+            <p>
+              <FaMapMarkerAlt /> <strong>Address:</strong> 742 Grabmarts Plaza,
+              Tech Valley Blvd, Silicon Heights, CA 90210
+            </p>
+            <p>
+              <FaClock /> <strong>Office Hours:</strong> Mon-Sat, 9:00 AM - 7:00
+              PM (PST)
+            </p>
+
+            <div
+              className="social-media-links"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                marginTop: "10px",
+              }}
+            >
+              <FaUsers style={{ fontSize: "1.2rem" }} />
+              <strong>Follow Us:</strong>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#3b5998", fontSize: "1.3rem" }}
+              >
+                <FaFacebook />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#E1306C", fontSize: "1.3rem" }}
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#1DA1F2", fontSize: "1.3rem" }}
+              >
+                <FaTwitter />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#0077B5", fontSize: "1.3rem" }}
+              >
+                <FaLinkedin />
+              </a>
             </div>
           </div>
         </div>

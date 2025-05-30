@@ -71,7 +71,7 @@
 }
 
 .sidebar button:active {
-  background-color: #e5e7eb; 
+  background-color: #e5e7eb; /* pressed state */
   transform: scale(0.98);
 }
 

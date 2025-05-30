@@ -17,7 +17,8 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
         setProducts(response.data);
         const ratings = {};
         response.data.forEach((product) => {
-          ratings[product._id] = Math.floor(Math.random() * 3) + 3; 
+          // CORRECTED: Generate random ratings from 1 to 5
+          ratings[product._id] = Math.floor(Math.random() * 5) + 1;
         });
         setProductRatings(ratings);
 
