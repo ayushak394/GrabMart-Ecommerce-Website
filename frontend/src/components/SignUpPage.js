@@ -10,6 +10,7 @@ const SignUpPage = () => {
   const [otp, setOtp] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [registeredsuccessfully, setregisteredsuccesfully] = useState(false);
 
 // Clear error after 5 seconds
 useEffect(() => {
@@ -121,6 +122,7 @@ useEffect(() => {
       });
       if (response.data.message === "Phone no verified") {
         setSuccessMessage("Phone number verified successfully!");
+        setregisteredsuccesfully(true);
       } else {
         setError("Invalid OTP");
       }
@@ -203,9 +205,10 @@ useEffect(() => {
               <h2 className="success-message">{successMessage}</h2>
             )}
 
-            <button type="submit" class="registerbutton">
+            {registeredsuccessfully && <button type="submit" class="registerbutton">
               Register
-            </button>
+            </button>}
+            
             <div className="register-link">
               <p>
                 Already have an account? <Link to="/Login">Login</Link>
