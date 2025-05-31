@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     const email = e.target.email.value;
     const newPassword = e.target.password.value;
 
-  const baseURL = process.env.REACT_APP_API_URL;
+    const baseURL = process.env.REACT_APP_API_URL;
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

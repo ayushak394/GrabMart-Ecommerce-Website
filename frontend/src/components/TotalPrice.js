@@ -8,7 +8,7 @@ const TotalPrice = ({ cartItems, totalPrice }) => {
   const baseURL = process.env.REACT_APP_API_URL;
 
   const numericTotalPrice = parseFloat(totalPrice) || 0;
-  const taxRate = 0.20;
+  const taxRate = 0.18;
   const taxAmount = numericTotalPrice * taxRate;
   const finalTotalWithTax = numericTotalPrice + taxAmount;
 
@@ -68,26 +68,30 @@ const TotalPrice = ({ cartItems, totalPrice }) => {
       <div className="price-details">
         {cartItems.map((item) => (
           <p key={item.productId._id}>
-            <img className="image" src={item.productId.image} alt={item.productId.name} />
-            {item.productId.name} - ${(parseFloat(item.productId.price) || 0).toFixed(2)} x {item.quantity}
+            <img
+              className="image"
+              src={item.productId.image}
+              alt={item.productId.name}
+            />
+            {item.productId.name} - ₹
+            {(parseFloat(item.productId.price) || 0).toFixed(2)} x{" "}
+            {item.quantity}
           </p>
         ))}
       </div>
       <div className="price-summary">
-        {/* MODIFIED HTML STRUCTURE HERE */}
         <p>
           <span>Subtotal:</span>
-          <span>${numericTotalPrice.toFixed(2)}</span>
+          <span>₹{numericTotalPrice.toFixed(2)}</span>
         </p>
         <p>
-          <span>Tax (20%):</span>
-          <span>${taxAmount.toFixed(2)}</span>
+          <span>Tax (18%):</span>
+          <span>₹{taxAmount.toFixed(2)}</span>
         </p>
         <div className="final-total">
-          {/* MODIFIED HTML STRUCTURE HERE */}
           <p>
             <span>Final Total:</span>
-            <span>${finalTotalWithTax.toFixed(2)}</span>
+            <span>₹{finalTotalWithTax.toFixed(2)}</span>
           </p>
         </div>
       </div>

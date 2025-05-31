@@ -12,22 +12,19 @@ const SignUpPage = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [registeredsuccessfully, setregisteredsuccesfully] = useState(false);
 
-// Clear error after 5 seconds
-useEffect(() => {
-  if (error) {
-    const timer = setTimeout(() => setError(""), 5000);
-    return () => clearTimeout(timer);
-  }
-}, [error]);
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
-// Clear success message after 5 seconds
-useEffect(() => {
-  if (successMessage) {
-    const timer = setTimeout(() => setSuccessMessage(""), 5000);
-    return () => clearTimeout(timer);
-  }
-}, [successMessage]);
-
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => setSuccessMessage(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   const baseURL = process.env.REACT_APP_API_URL;
 
@@ -205,10 +202,12 @@ useEffect(() => {
               <h2 className="success-message">{successMessage}</h2>
             )}
 
-            {registeredsuccessfully && <button type="submit" class="registerbutton">
-              Register
-            </button>}
-            
+            {registeredsuccessfully && (
+              <button type="submit" class="registerbutton">
+                Register
+              </button>
+            )}
+
             <div className="register-link">
               <p>
                 Already have an account? <Link to="/Login">Login</Link>

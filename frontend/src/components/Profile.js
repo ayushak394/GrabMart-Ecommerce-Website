@@ -30,7 +30,7 @@ const getUserIdFromToken = () => {
   }
 };
 
-  const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.REACT_APP_API_URL;
 
 const Profile = ({ totalItems }) => {
   useTokenCheck();
@@ -140,7 +140,6 @@ const Profile = ({ totalItems }) => {
       <Header showNavigationBar={false} totalItems={totalItems} />
 
       <div className="top-sections-container">
-        {/* Profile Container */}
         <div className="profile-container">
           {profilePic && (
             <img src={profilePic} alt="Profile" className="profile-pic" />
@@ -165,7 +164,6 @@ const Profile = ({ totalItems }) => {
           )}
         </div>
 
-        {/* Feedback Section */}
         <div className="feedback-section">
           <h1>We would love to hear your feedback!</h1>
           <textarea
@@ -177,7 +175,6 @@ const Profile = ({ totalItems }) => {
         </div>
       </div>
 
-      {/* Contact Us Section */}
       <div className="contact-us-section">
         <h1>Contact Us</h1>
         <div className="map-and-contact">

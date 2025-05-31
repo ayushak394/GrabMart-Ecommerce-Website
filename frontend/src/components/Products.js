@@ -17,7 +17,6 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
         setProducts(response.data);
         const ratings = {};
         response.data.forEach((product) => {
-          // CORRECTED: Generate random ratings from 1 to 5
           ratings[product._id] = Math.floor(Math.random() * 5) + 1;
         });
         setProductRatings(ratings);
@@ -143,8 +142,10 @@ const ProductList = ({ sortCriteria, searchQuery, refreshCart }) => {
             />
           </div>
           <h3 className="product-name">{product.name}</h3>
-          <p className="rating">Rating: {renderStars(productRatings[product._id])}</p>
-          <p className="price">Price: ${product.price}</p>
+          <p className="rating">
+            Rating: {renderStars(productRatings[product._id])}
+          </p>
+          <p className="price">Price: ₹{product.price}</p>
           <button onClick={() => addToCart(product)}>Add to cart</button>
         </div>
       ))}
