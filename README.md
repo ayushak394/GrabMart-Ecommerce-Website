@@ -7,8 +7,9 @@
 [![Twilio](https://img.shields.io/badge/Twilio-FF8A00?style=flat&logo=twilio&logoColor=white)](https://www.twilio.com/)
 [![Cashfree](https://img.shields.io/badge/Cashfree-00457C?style=flat&logo=paypal&logoColor=white)](https://www.cashfree.com/)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
+[![EmailJS](https://img.shields.io/badge/EmailJS-D14836?style=flat&logo=mail&logoColor=white)](https://www.emailjs.com/)
 
-GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using Twilio OTP, browse products by category, manage their cart, securely pay via Cashfree, and upload profile pictures using Cloudinary. It provides a seamless shopping experience with modern UI and secure authentication.
+GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using Twilio OTP, browse products by category, manage their cart, securely pay via Cashfree, upload profile pictures using Cloudinary, and receive email notifications via EmailJS. It provides a seamless shopping experience with modern UI and secure authentication.
 
 ## 🚀 Features
 
@@ -18,7 +19,7 @@ GrabMart is a full-stack e-commerce web application built with the MERN stack �
 - 💳 Secure Checkout with Cashfree payment gateway integration
 - 📷 Profile picture upload and storage using Cloudinary
 - 🔐 JWT-based user session authentication
-
+- ✉️ Email notifications (Order confirmation) powered by EmailJS
 
 ## 📦 Installation
 
@@ -28,7 +29,7 @@ Follow these steps to set up and run the project locally:
 
 - Node.js (LTS version)
 - MongoDB (Local with Compass or Atlas Cloud)
-- Twilio, CashFree, Cloudinary Account (Free tier works for development)
+- Twilio, CashFree, Cloudinary Account, EmailJS Account (Free tier works for development)
 
 ## 🛠 Setup Guide
 
@@ -75,6 +76,11 @@ CLOUDINARY_API_SECRET=your_api_secret
 Create another .env file in the frontend directory with the following:
 ```bash
 REACT_APP_API_BASE_URL=http://localhost:4000
+
+# EmailJS Configuration
+REACT_APP_EMAILJS_SERVICE_ID=your_emailjs_service_id
+REACT_APP_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+REACT_APP_EMAILJS_USER_ID=your_emailjs_user_id
 ```
 This tells the React frontend where to send API requests. Update the port if your backend runs on a different one.
 
@@ -120,6 +126,8 @@ Auth: JWT + Twilio OTP
 Payments: Cashfree API
 
 Image Hosting: Cloudinary
+
+Email Notifications: EmailJS
 
 ## 🌐 Live Demo
 
