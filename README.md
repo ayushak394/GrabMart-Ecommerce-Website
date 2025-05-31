@@ -6,8 +6,9 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Twilio](https://img.shields.io/badge/Twilio-FF8A00?style=flat&logo=twilio&logoColor=white)](https://www.twilio.com/)
 [![Cashfree](https://img.shields.io/badge/Cashfree-00457C?style=flat&logo=paypal&logoColor=white)](https://www.cashfree.com/)
+[![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
 
-GrabMart is a full-stack e-commerce web application built using the MERN stack — MongoDB, Express.js, React, and Node.js — with secure OTP authentication via Twilio and payment processing via Cashfree.
+GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using Twilio OTP, browse products by category, manage their cart, securely pay via Cashfree, and upload profile pictures using Cloudinary. It provides a seamless shopping experience with modern UI and secure authentication.
 
 ## 🚀 Features
 
@@ -15,7 +16,7 @@ GrabMart is a full-stack e-commerce web application built using the MERN stack �
 - 🛍️ Product listing and category-based filtering
 - 🛒 Cart management (Add/Remove/Quantity update)
 - 💳 Secure Checkout with Cashfree payment gateway integration
-- 📷 File uploads for user profile pictures
+- 📷 Profile picture upload and storage using Cloudinary
 - 🔐 JWT-based user session authentication
 
 
@@ -27,7 +28,7 @@ Follow these steps to set up and run the project locally:
 
 - Node.js (LTS version)
 - MongoDB (Local with Compass or Atlas Cloud)
-
+- Twilio, CashFree, Cloudinary Account (Free tier works for development)
 
 ## 🛠 Setup Guide
 
@@ -52,7 +53,7 @@ cd ..
 
 Create a .env file inside the backend directory with the following:
 ```bash
-MONGO_URL=mongodb://localhost:27017/E-commerce
+MONGO_URL=your_mongo_url
 JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=1d
 
@@ -64,7 +65,18 @@ TWILIO_SERVICE_SID=your_twilio_service_sid
 # Cashfree Payment Gateway
 CASHFREE_APP_ID=your_cashfree_app_id
 CASHFREE_SECRET_KEY=your_cashfree_secret
+
+# Cloudinary Configuration
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
+
+Create another .env file in the frontend directory with the following:
+```bash
+REACT_APP_API_BASE_URL=http://localhost:4000
+```
+This tells the React frontend where to send API requests. Update the port if your backend runs on a different one.
 
 4️⃣ **MongoDB Setup** :
 
@@ -87,13 +99,13 @@ Start the Frontend:
 cd ../frontend
 npm start
 ```
+## 🌐 Environment Setup Notes
 
-## 🗂️ File Uploads
+If you're running this project locally instead of using the hosted version:
 
-Make sure a directory named uploads exists in the backend:
-```bash
-mkdir backend/uploads
-```
+Replace the hosted MONGO_URL in .env with your local MongoDB URI (e.g. mongodb://localhost:27017/E-commerce)
+
+Set REACT_APP_API_BASE_URL in frontend/.env to your local backend URL (e.g. localhost:4000)
 
 ## 🛠 Tech Stack
 
@@ -106,6 +118,12 @@ Database: MongoDB (Compass/Atlas)
 Auth: JWT + Twilio OTP
 
 Payments: Cashfree API
+
+Image Hosting: Cloudinary
+
+## 🌐 Live Demo
+
+🔗 [View GrabMart Live](https://grab-mart-ecommerce-website.vercel.app/)
 
 ## 📜 License
 
