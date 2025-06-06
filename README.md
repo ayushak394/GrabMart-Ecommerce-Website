@@ -4,16 +4,16 @@
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
-[![Twilio](https://img.shields.io/badge/Twilio-FF8A00?style=flat&logo=twilio&logoColor=white)](https://www.twilio.com/)
+[![Vonage](https://img.shields.io/badge/Vonage-00457C?style=flat&logo=vonage&logoColor=white)](https://www.vonage.com/)
 [![Cashfree](https://img.shields.io/badge/Cashfree-00457C?style=flat&logo=paypal&logoColor=white)](https://www.cashfree.com/)
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
 [![EmailJS](https://img.shields.io/badge/EmailJS-D14836?style=flat&logo=mail&logoColor=white)](https://www.emailjs.com/)
 
-GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using Twilio OTP, browse products by category, manage their cart, securely pay via Cashfree, upload profile pictures using Cloudinary, and receive email notifications via EmailJS. It provides a seamless shopping experience with modern UI and secure authentication.
+GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using Vonage OTP, browse products by category, manage their cart, securely pay via Cashfree, upload profile pictures using Cloudinary, and receive email notifications via EmailJS. It provides a seamless shopping experience with modern UI and secure authentication.
 
 ## 🚀 Features
 
-- ✅ User registration and login with OTP authentication via Twilio
+- ✅ User registration and login with OTP authentication via Vonage
 - 🛍️ Product listing and category-based filtering
 - 🛒 Cart management (Add/Remove/Quantity update)
 - 💳 Secure Checkout with Cashfree payment gateway integration
@@ -29,7 +29,7 @@ Follow these steps to set up and run the project locally:
 
 - Node.js (LTS version)
 - MongoDB (Local with Compass or Atlas Cloud)
-- Twilio, CashFree, Cloudinary Account, EmailJS Account (Free tier works for development)
+- Vonage, CashFree, Cloudinary Account, EmailJS Account (Free tier works for development)
 
 ## 🛠 Setup Guide
 
@@ -58,10 +58,9 @@ MONGO_URL=your_mongo_url
 JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=1d
 
-# Twilio Configuration
-TWILIO_ACCOUNT_SID=your_twilio_sid
-TWILIO_AUTH_TOKEN=your_twilio_auth_token
-TWILIO_SERVICE_SID=your_twilio_service_sid
+# Vonage Configuration
+VONAGE_API_KEY=your_vonage_api_key
+VONAGE_API_SECRET=your_vonage_api_secret
 
 # Cashfree Payment Gateway
 CASHFREE_APP_ID=your_cashfree_app_id
@@ -121,7 +120,7 @@ Backend: Node.js, Express.js
 
 Database: MongoDB (Compass/Atlas)
 
-Auth: JWT + Twilio OTP
+Auth: JWT + Vonage OTP 
 
 Payments: Cashfree API
 
