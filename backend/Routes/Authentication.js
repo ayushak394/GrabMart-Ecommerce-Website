@@ -3,14 +3,7 @@ const bcrypt = require("bcryptjs"); // Library for securely hashing passwords
 const jwt = require("jsonwebtoken"); // Creating and Verifying JWT tokens
 const User = require("../Models/UserSchema"); // Refers to the Mongoose model for the User collection
 const router = express.Router(); // Used to define routes like /register/login etc.
-const twilio = require("twilio");
-
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const serviceSid = process.env.TWILIO_SERVICE_SID;
-
-const client = twilio(accountSid, authToken);
-
+const redisClient = require("./RedisClient");
 
 router.post("/register", async (req, res) => {
   // defines post route for registering a new user
@@ -80,39 +73,54 @@ router.post("/update-password", async (req, res) => {
   }
 });
 
+const { Vonage } = require("@vonage/server-sdk");
+const vonage = new Vonage({
+  apiKey: process.env.VONAGE_API_KEY,
+  apiSecret: process.env.VONAGE_API_SECRET,
+});
+
+const otpStore = new Map();
+
 router.post("/send-otp", async (req, res) => {
   const { phone } = req.body;
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
   try {
-    const verification = await client.verify.v2
-      .services(serviceSid)
-      .verifications.create({
-        to: `+91${phone}`,
-        channel: "sms",
-      });
-    res.status(200).send(verification);
+    // Store OTP in Redis with 5 min expiry (300 sec)
+    await redisClient.setEx(`otp:${phone}`, 300, otp); // key: otp:9876543210
+
+    // Send OTP via Vonage or any service (this part remains same)
+    await vonage.sms.send({
+      to: `91${phone}`,
+      from: "VonageOTP",
+      text: `Your GrabMart OTP is: ${otp}`,
+    });
+
+    res.status(200).send({ message: "OTP sent successfully" });
   } catch (error) {
-    console.log("Error msg:", error.message || error);
-    res.status(500).send(error);
+    console.error("OTP send error:", error.message || error);
+    res.status(500).send({ error: "Failed to send OTP" });
   }
 });
 
 router.post("/verify-otp", async (req, res) => {
   const { phone, code } = req.body;
   try {
-    const verificationCheck = await client.verify.v2
-      .services(serviceSid)
-      .verificationChecks.create({
-        to: `+91${phone}`,
-        code: code,
-      });
-    if (verificationCheck.status === "approved") {
+    const storedOtp = await redisClient.get(`otp:${phone}`);
+
+    if (!storedOtp) {
+      return res.status(400).send({ message: "OTP expired or not found" });
+    }
+
+    if (storedOtp === code) {
+      await redisClient.del(`otp:${phone}`); // cleanup after success
       res.status(200).send({ message: "Phone no verified" });
     } else {
       res.status(400).send({ message: "Invalid OTP" });
     }
   } catch (error) {
-    console.log("Error msg:", error.message || error);
-    res.status(500).send(error);
+    console.error("OTP verification error:", error.message || error);
+    res.status(500).send({ error: "Failed to verify OTP" });
   }
 });
 
