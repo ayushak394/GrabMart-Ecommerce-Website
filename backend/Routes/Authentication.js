@@ -93,7 +93,7 @@ router.post("/send-otp", async (req, res) => {
     await vonage.sms.send({
       to: `91${phone}`,
       from: "VonageOTP",
-      text: `Your GrabMart OTP is: ${otp}`,
+      text: `Hello from GrabMart! Your one-time password is ${otp}`,
     });
 
     res.status(200).send({ message: "OTP sent successfully" });
