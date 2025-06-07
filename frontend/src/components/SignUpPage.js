@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/SignUpPage.css";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
   const [otp, setOtp] = useState("");
+  const [generatedOtp, setGeneratedOtp] = useState("");
   const [isSendingOtp, setIsSendingOtp] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [registeredsuccessfully, setregisteredsuccesfully] = useState(false);
+  const [registeredsuccessfully, setRegisteredsuccessfully] = useState(false);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const baseURL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (error) {
@@ -26,28 +31,69 @@ const SignUpPage = () => {
     }
   }, [successMessage]);
 
-  const baseURL = process.env.REACT_APP_API_URL;
+  const generateOtp = () =>
+    Math.floor(100000 + Math.random() * 900000).toString();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission (would cause page to reload)
-    setError("");
-    const username = e.target.username.value; // Extract values entered by user into form fields
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    // Regex - Using pattern in email addresses to verify if email is valid or not
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
+  const sendOtp = async () => {
+    if (!email || !username) {
+      setError("Enter username and a valid email first.");
       return;
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Invalid email format.");
+      return;
+    }
+
+    const otpCode = generateOtp();
+    setGeneratedOtp(otpCode);
+    setIsSendingOtp(true);
+
+    const templateParams = {
+      user_name: username,
+      user_email: email,
+      otp_code: otpCode,
+      year: new Date().getFullYear(),
+    };
+
+    try {
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID_2,
+        templateParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      );
+      setSuccessMessage("OTP sent to your email.");
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setError("Failed to send OTP. Please try again.");
+    } finally {
+      setIsSendingOtp(false);
+    }
+  };
+
+  const verifyOtp = () => {
+    if (!otp) {
+      setError("Enter the OTP.");
+    } else if (otp === generatedOtp) {
+      setSuccessMessage("Email verified successfully.");
+      setRegisteredsuccessfully(true);
+    } else {
+      setError("Invalid OTP. Try again.");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!passwordRegex.test(password)) {
       setError(
-        "Password must be atleast 8 characters, and should contain one lower and uppercase letter, a number and a special character."
+        "Password must have at least 8 characters, one uppercase, one lowercase, one number, and one special character."
       );
       return;
     }
@@ -57,166 +103,111 @@ const SignUpPage = () => {
       return;
     }
 
-    const body = {
-      // creating object with user inputs, that will be sent in request to backend
-      username,
-      email,
-      password,
-    };
-
     try {
-      // sending the post request to server
       const response = await fetch(`${baseURL}/auth/register`, {
-        method: "POST", // set http method to post
+        method: "POST",
         headers: {
-          "Content-Type": "application/json", // indicate type of data being sent
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(body), // convert data to JSON string to send in body of request
+        body: JSON.stringify({ username, email, password }),
       });
 
       if (response.ok) {
-        navigate("/Login"); // If response is OK redirect user to Login Page
+        navigate("/Login");
       } else {
-        const data = await response.json(); // Parse response as JSON to get error message
-        setError(data.error); // Update error state with error message from server
+        const data = await response.json();
+        setError(data.error || "Registration failed.");
       }
     } catch (error) {
-      setError("Something went wrong"); // If error occurs generate a generic message
-    }
-  };
-
-  const sendOtp = async () => {
-    if (!phoneNo) {
-      setError("Please enter a valid phone number");
-      return;
-    }
-
-    setIsSendingOtp(true);
-
-    try {
-      const response = await axios.post(`${baseURL}/auth/send-otp`, {
-        phone: phoneNo,
-      });
-      setSuccessMessage("OTP sent successfully!");
-      console.log(response.data);
-    } catch (error) {
-      setError("Failed to send OTP");
-      console.log(error);
-    } finally {
-      setIsSendingOtp(false);
-    }
-  };
-
-  const verifyOtp = async () => {
-    if (!otp || !phoneNo) {
-      setError("Please enter the OTP!");
-      return;
-    }
-    try {
-      const response = await axios.post(`${baseURL}/auth/verify-otp`, {
-        phone: phoneNo,
-        code: otp,
-      });
-      if (response.data.message === "Phone no verified") {
-        setSuccessMessage("Phone number verified successfully!");
-        setregisteredsuccesfully(true);
-      } else {
-        setError("Invalid OTP");
-      }
-    } catch (error) {
-      setError("Failed to verify OTP");
-      console.error(error);
+      setError("Something went wrong.");
     }
   };
 
   return (
-    <>
-      <link
-        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-        rel="stylesheet"
-      />
-      <div className="background">
-        <div className="SignUpPage">
-          <form onSubmit={handleSubmit}>
-            <h1>SignUp</h1>
-            <div className="input-box">
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                required
-              />
-              <i class="bx bxs-user"></i>
-            </div>
+    <div className="background">
+      <div className="SignUpPage">
+        <form onSubmit={handleSubmit}>
+          <h1>SignUp</h1>
 
-            <div className="input-box">
-              <input type="email" name="email" placeholder="Email" required />
-              <i class="bx bxs-envelope"></i>
-            </div>
+          <div className="input-box">
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              required
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <i className="bx bxs-user"></i>
+          </div>
 
-            <div className="input-box">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-              <i class="bx bxs-lock-alt"></i>
-            </div>
-            <div className="input-box">
-              <input
-                type="number"
-                name="number"
-                placeholder="Enter your Phone Number"
-                required
-                onChange={(e) => setPhoneNo(e.target.value)}
-              />
-              <i class="bx bxs-lock-alt"></i>
-            </div>
+          <div className="input-box">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <i className="bx bxs-envelope"></i>
+          </div>
 
-            <button
-              type="button"
-              className="button"
-              onClick={sendOtp}
-              disabled={isSendingOtp}
-            >
-              {isSendingOtp ? "Sending..." : "Send OTP"}
+          <div className="input-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className="bx bxs-lock-alt"></i>
+          </div>
+
+          <button
+            type="button"
+            className="button"
+            onClick={sendOtp}
+            disabled={isSendingOtp}
+          >
+            {isSendingOtp ? "Sending..." : "Send OTP to Email"}
+          </button>
+
+          <div className="input-box">
+            <input
+              type="number"
+              name="otp"
+              placeholder="Enter OTP"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+            />
+            <i className="bx bxs-lock-alt"></i>
+          </div>
+
+          <button type="button" className="button" onClick={verifyOtp}>
+            Verify OTP
+          </button>
+
+          {error && <h2 className="error-message">{error}</h2>}
+          {successMessage && (
+            <h2 className="success-message">{successMessage}</h2>
+          )}
+
+          {registeredsuccessfully && (
+            <button type="submit" className="registerbutton">
+              Register
             </button>
+          )}
 
-            <div className="input-box">
-              <input
-                type="number"
-                name="number"
-                placeholder="Enter OTP"
-                onChange={(e) => setOtp(e.target.value)}
-              />
-              <i class="bx bxs-lock-alt"></i>
-            </div>
-
-            <button type="button" class="button" onClick={verifyOtp}>
-              Verify OTP
-            </button>
-
-            {error && <h2 className="error-message">{error}</h2>}
-            {successMessage && (
-              <h2 className="success-message">{successMessage}</h2>
-            )}
-
-            {registeredsuccessfully && (
-              <button type="submit" class="registerbutton">
-                Register
-              </button>
-            )}
-
-            <div className="register-link">
-              <p>
-                Already have an account? <Link to="/Login">Login</Link>
-              </p>
-            </div>
-          </form>
-        </div>
+          <div className="register-link">
+            <p>
+              Already have an account? <Link to="/Login">Login</Link>
+            </p>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
