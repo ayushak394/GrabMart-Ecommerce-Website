@@ -40,6 +40,10 @@ const Profile = ({ totalItems }) => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [feedback, setFeedBack] = useState("");
+  const [feedbackMessage, setFeedbackMessage] = useState({
+    type: "",
+    text: "",
+  });
 
   const userId = getUserIdFromToken();
 
@@ -49,7 +53,10 @@ const Profile = ({ totalItems }) => {
 
   const handleUpload = async () => {
     if (!file) {
-      alert("Please select a file first");
+      setFeedbackMessage({
+        type: "error",
+        text: "Please select a file first",
+      });
       return;
     }
 
@@ -75,8 +82,11 @@ const Profile = ({ totalItems }) => {
   };
 
   const handleSubmitFeedback = async () => {
-    if (!feedback) {
-      alert("Please provide your feedback before submitting");
+    if (!feedback.trim()) {
+      setFeedbackMessage({
+        type: "error",
+        text: "Please provide your feedback before submitting.",
+      });
       return;
     }
 
@@ -84,10 +94,17 @@ const Profile = ({ totalItems }) => {
       await axios.post(`${baseURL}/Profile/submitFeedback`, {
         feedback,
       });
-      alert("Feedback Submitted Successfully!");
+      setFeedbackMessage({
+        type: "success",
+        text: "Feedback submitted successfully!",
+      });
       setFeedBack("");
     } catch (error) {
       console.error("Error submitting feedback", error);
+      setFeedbackMessage({
+        type: "error",
+        text: "Something went wrong while submitting feedback.",
+      });
     }
   };
 
@@ -132,6 +149,16 @@ const Profile = ({ totalItems }) => {
     fetchEmail();
   }, [userId]);
 
+  // Auto clear feedback message after 5 seconds
+  useEffect(() => {
+    if (feedbackMessage.text) {
+      const timer = setTimeout(() => {
+        setFeedbackMessage({ type: "", text: "" });
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedbackMessage.text]);
+
   return (
     <div
       className="ProfilePage"
@@ -169,8 +196,20 @@ const Profile = ({ totalItems }) => {
           <textarea
             value={feedback}
             onChange={handleFeedbackChange}
-            placeholder="Leave your feedback here..."
+            placeholder="Tell us how we can improve your experience..."
           />
+          {feedbackMessage.text && (
+            <p
+              className={`feedback-message ${
+                feedbackMessage.text ? "visible" : "hidden"
+              }`}
+              style={{
+                color: feedbackMessage.type === "success" ? "green" : "red",
+              }}
+            >
+              {feedbackMessage.text}
+            </p>
+          )}
           <button onClick={handleSubmitFeedback}>Submit Feedback</button>
         </div>
       </div>

@@ -116,7 +116,7 @@ const Homepage = ({ totalItems, refreshCart }) => {
         const name = item.productId.name;
         const quantity = item.quantity;
         const price = (item.productId.price * item.quantity).toFixed(2);
-        return `<tr><td>${name}</td><td>${quantity}</td><td>$${price}</td></tr>`;
+        return `<tr><td>${name}</td><td>${quantity}</td><td>₹${price}</td></tr>`;
       })
       .join("");
 
