@@ -8,6 +8,8 @@ import "../CSS/HomePage.css";
 import { jwtDecode } from "jwt-decode";
 import emailjs from "@emailjs/browser";
 import axios from "axios";
+import Chatbot from "./Chatbot";
+
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -51,7 +53,7 @@ const Homepage = ({ totalItems, refreshCart }) => {
     const fetchUsername = async () => {
       try {
         const response = await axios.get(
-          `${baseURL}/Profile/getUsername/${userId}`
+          `${baseURL}/Profile/getUsername/${userId}`,
         );
         setUserName(response.data.username);
       } catch (error) {
@@ -62,7 +64,7 @@ const Homepage = ({ totalItems, refreshCart }) => {
     const fetchEmail = async () => {
       try {
         const response = await axios.get(
-          `${baseURL}/Profile/getEmail/${userId}`
+          `${baseURL}/Profile/getEmail/${userId}`,
         );
         setUserEmail(response.data.email);
       } catch (error) {
@@ -135,7 +137,7 @@ const Homepage = ({ totalItems, refreshCart }) => {
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
         process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         templateParams,
-        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
       )
       .then((response) => {
         console.log("Email sent successfully", response);
@@ -159,6 +161,9 @@ const Homepage = ({ totalItems, refreshCart }) => {
           searchQuery={searchQuery}
           refreshCart={refreshCart}
         />
+        <div className="chatbot-container">
+          <Chatbot />
+        </div>
         {showThankYouMsg && (
           <div className="thank-you-msg">
             <p>Thank You for Your Purchase! 🎉</p>

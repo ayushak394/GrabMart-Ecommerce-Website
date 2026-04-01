@@ -16,6 +16,8 @@ import {
   FaLinkedin,
   FaUsers,
 } from "react-icons/fa";
+import Chatbot from "./Chatbot";
+
 
 const getUserIdFromToken = () => {
   const token = localStorage.getItem("token");
@@ -69,7 +71,7 @@ const Profile = ({ totalItems }) => {
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
-        }
+        },
       );
       setProfilePic(response.data.profilePic);
     } catch (error) {
@@ -114,7 +116,7 @@ const Profile = ({ totalItems }) => {
     const fetchProfilePic = async () => {
       try {
         const response = await axios.get(
-          `${baseURL}/Profile/getProfilePic/${userId}`
+          `${baseURL}/Profile/getProfilePic/${userId}`,
         );
         setProfilePic(response.data.profilePic);
       } catch (error) {
@@ -125,7 +127,7 @@ const Profile = ({ totalItems }) => {
     const fetchUsername = async () => {
       try {
         const response = await axios.get(
-          `${baseURL}/Profile/getUsername/${userId}`
+          `${baseURL}/Profile/getUsername/${userId}`,
         );
         setUserName(response.data.username);
       } catch (error) {
@@ -136,7 +138,7 @@ const Profile = ({ totalItems }) => {
     const fetchEmail = async () => {
       try {
         const response = await axios.get(
-          `${baseURL}/Profile/getEmail/${userId}`
+          `${baseURL}/Profile/getEmail/${userId}`,
         );
         setEmail(response.data.email);
       } catch (error) {
@@ -289,6 +291,9 @@ const Profile = ({ totalItems }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div style={{ position: "fixed", bottom: "20px", right: "20px" }}>
+        <Chatbot />
       </div>
 
       <Footer />

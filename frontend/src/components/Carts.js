@@ -6,6 +6,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import TotalPrice from "./TotalPrice";
 import useTokenCheck from "../hooks/tokencheck";
+import Chatbot from "./Chatbot";
 
 const getUserIdFromToken = () => {
   const token = localStorage.getItem("token");
@@ -40,7 +41,7 @@ const Cart = ({ totalItems, refreshCart }) => {
     if (!userId) return;
 
     setCartItems((prevCartItems) =>
-      prevCartItems.filter((item) => item.productId._id !== productId)
+      prevCartItems.filter((item) => item.productId._id !== productId),
     );
 
     console.log("Removing item:", userId, productId);
@@ -82,7 +83,7 @@ const Cart = ({ totalItems, refreshCart }) => {
     .toFixed(2);
 
   const searchAndAllProducts = cartItems.filter((item) =>
-    item.productId.name.toLowerCase().includes(searchQuery.toLowerCase())
+    item.productId.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
@@ -125,6 +126,9 @@ const Cart = ({ totalItems, refreshCart }) => {
         </div>
       )}
       <TotalPrice cartItems={cartItems} totalPrice={totalPrice} />
+      <div style={{ position: "fixed", bottom: "20px", right: "20px" }}>
+        <Chatbot />
+      </div>
       <Footer />
     </div>
   );

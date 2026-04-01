@@ -41,3 +41,5 @@ app.use("/cart", cartRoutes);
 
 const paymentRoutes = require("./Routes/Payment");
 app.use("/payment", paymentRoutes);
+
+app.use("/api", require("./Routes/Chat"));
