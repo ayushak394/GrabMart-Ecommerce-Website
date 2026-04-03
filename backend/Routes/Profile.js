@@ -4,17 +4,16 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 const User = require("../Models/UserSchema");
 const Feedback = require("../Models/Feedback");
+import authenticateToken from "../Middleware/authenticateToken"; // Middleware to verify JWT tokens
 
 const router = express.Router();
 
-// Configure Cloudinary with your env variables
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Set up Cloudinary storage for multer
 const storage = new CloudinaryStorage({
   cloudinary,
   params: {
@@ -28,6 +27,7 @@ const upload = multer({ storage });
 
 router.post(
   "/uploadProfilePic/:userId",
+  authenticateToken,
   upload.single("profilePic"),
   async (req, res) => {
     try {
@@ -54,9 +54,8 @@ router.post(
   }
 );
 
-// The rest of your routes remain unchanged...
 
-router.get("/getProfilePic/:userId", async (req, res) => {
+router.get("/getProfilePic/:userId", authenticateToken, async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user || !user.profilepic)
@@ -67,7 +66,7 @@ router.get("/getProfilePic/:userId", async (req, res) => {
   }
 });
 
-router.get("/getUsername/:userId", async (req, res) => {
+router.get("/getUsername/:userId", authenticateToken, async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -78,7 +77,7 @@ router.get("/getUsername/:userId", async (req, res) => {
   }
 });
 
-router.get("/getEmail/:userId", async (req, res) => {
+router.get("/getEmail/:userId", authenticateToken, async (req, res) => {
   const { userId } = req.params;
 
   try {
@@ -89,7 +88,7 @@ router.get("/getEmail/:userId", async (req, res) => {
   }
 });
 
-router.post("/submitFeedback", async (req, res) => {
+router.post("/submitFeedback", authenticateToken, async (req, res) => {
   const { feedback } = req.body;
   if (!feedback) {
     return res.status(400).json({ message: "Feedback is required." });
@@ -104,6 +103,55 @@ router.post("/submitFeedback", async (req, res) => {
   } catch (error) {
     console.error("Error saving feedback: ", error);
     return res.status(500).json({ message: "Server error." });
+  }
+});
+
+router.put("/updateProfile/:userId", authenticateToken, async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { username, bio, location } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        username,
+        bio,
+        location,
+      },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      message: "Profile updated successfully",
+      user: updatedUser,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error updating profile" });
+  }
+});
+
+router.get("/getProfile/:userId", authenticateToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({
+      username: user.username,
+      email: user.email,
+      profilePic: user.profilepic,
+      bio: user.bio,
+      location: user.location,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching profile" });
   }
 });
 

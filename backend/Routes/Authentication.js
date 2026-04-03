@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs"); // Library for securely hashing passwords
 const jwt = require("jsonwebtoken"); // Creating and Verifying JWT tokens
 const User = require("../Models/UserSchema"); // Refers to the Mongoose model for the User collection
 const router = express.Router(); // Used to define routes like /register/login etc.
+const authenticateToken = require("../Middleware/authenticateToken"); // Middleware to verify JWT tokens
+
 router.post("/register", async (req, res) => {
   // defines post route for registering a new user
   const { username, email, password } = req.body; // extraction of elements from request body
@@ -29,7 +31,9 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body; // extraction of elements from request body
 
   try {
-    const user = await User.findOne({ username }); // find user by username
+    const user = await User.findOne({
+      $or: [{ username }, { email: username }],
+    });
     if (!user) {
       return res.status(400).json({ error: "Invalid username or password" });
     }
@@ -43,30 +47,57 @@ router.post("/login", async (req, res) => {
       expiresIn: "2h",
     });
 
-    res.json({ message: "Login successful", token });
+    res.json({
+      message: "Login successful",
+      token,
+      userId: user._id,
+    });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
 });
 
-router.post("/update-password", async (req, res) => {
-  // defines post route for updating password for an existing user
-  const { email, newPassword } = req.body; // extraction of elements from request body
 
+router.post("/update-password", authenticateToken, async (req, res) => {
   try {
-    const user = await User.findOne({ email }); // find user by email
+    const { email, oldPassword, newPassword } = req.body;
+
+    const user = await User.findOne({ email });
+
     if (!user) {
       return res.status(404).json({ error: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ error: "Old password is incorrect" });
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     user.password = hashedPassword;
-
     await user.save();
+
     res.json({ message: "Password updated successfully" });
+
   } catch (error) {
-    console.error("Error updating password:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/check-email", authenticateToken, async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ exists: false });
+    }
+
+    res.json({ exists: true });
+  } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
 });

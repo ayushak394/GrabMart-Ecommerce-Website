@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router(); // An instance of express router which allows to define router handlers like /add,/remove etc
 const Cart = require("../Models/Cart"); // To connect to mongodb cart
+import authenticateToken from "../Middleware/authenticateToken"; // Middleware to verify JWT tokens
 
-router.post("/add", async (req, res) => {
+router.post("/add", authenticateToken, async (req, res) => {
   // req represents incoming http request(contains information about the request made by client), res represent outgoing http response
   // To add an item to cart
   const { userId, product } = req.body; // the request bod(comes from client side(when user clicks the add button)) must contain userId, product
@@ -16,7 +17,7 @@ router.post("/add", async (req, res) => {
     }
 
     const existingItem = cart.items.find(
-      (item) => item.productId.toString() === product.productId
+      (item) => item.productId.toString() === product.productId,
     ); // cart.items refers to the items array in the cart object and uses the js function .find to travese through the array and finds if the productid of an item matches the productid being passed.
 
     if (existingItem) {
@@ -39,24 +40,27 @@ router.post("/add", async (req, res) => {
   }
 });
 
-router.get("/:userId", async (req, res) => {
-  // to get cart items
+router.get("/:userId", authenticateToken, async (req, res) => {
   try {
     const cart = await Cart.findOne({ userId: req.params.userId }).populate(
-      "items.productId", // populate is a mongoose method which helps in replacing ObjectId refrences with the corresponding documents from another collection. In our case it will replace productId with the full product details.
-      "name image price"
+      "items.productId",
+      "name image price",
     );
-    res.status(200).json(cart ? cart.items : []); // if cart is found it sends a OK status along with list of items, or else returns an empty array
+
+    if (!cart || !cart.items) {
+      return res.status(200).json([]);
+    }
+
+    return res.status(200).json(cart.items);
   } catch (error) {
-    res.status(500).json({ error: "Error fetching cart" }); // catch error and display if any during code execution
+    console.error("GET CART ERROR:", error); // 🔥 ADD THIS
+    res.status(500).json({ error: "Error fetching cart" });
   }
 });
 
-router.delete("/remove/:userId/:productId", async (req, res) => {
+router.delete("/remove/:userId/:productId", authenticateToken, async (req, res) => {
   try {
     const { userId, productId } = req.params; // extract from the route paramaters
-
-    console.log(req.params);
     const cart = await Cart.findOne({ userId }); // find cart by userId
 
     if (!cart) {
@@ -64,7 +68,7 @@ router.delete("/remove/:userId/:productId", async (req, res) => {
     }
 
     cart.items = cart.items.filter(
-      (item) => item.productId.toString() !== productId.toString() // if a cart exists filter the items to remove the item with productId extract
+      (item) => item.productId.toString() !== productId.toString(), // if a cart exists filter the items to remove the item with productId extract
     );
 
     await cart.save(); // save the updated cart to database
@@ -75,7 +79,7 @@ router.delete("/remove/:userId/:productId", async (req, res) => {
   }
 });
 
-router.put("/update/:userId/:productId", async (req, res) => {
+router.put("/update/:userId/:productId", authenticateToken, async (req, res) => {
   try {
     const { userId, productId } = req.params;
     const { quantity } = req.body;
@@ -85,7 +89,7 @@ router.put("/update/:userId/:productId", async (req, res) => {
     if (!cart) return res.status(404).json({ error: "No user cart found." });
 
     const existingItem = cart.items.find(
-      (item) => item.productId.toString() === productId.toString()
+      (item) => item.productId.toString() === productId.toString(),
     );
 
     if (!existingItem) {
@@ -104,6 +108,25 @@ router.put("/update/:userId/:productId", async (req, res) => {
     res.status(200).json(cart.items);
   } catch (error) {
     res.status(500).json({ error: "Error updating item quantity" });
+  }
+});
+
+router.delete("/clear/:userId", authenticateToken, async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    await Cart.findOneAndDelete({ userId });
+
+    res.status(200).json({ message: "Cart cleared successfully" });
+  } catch (error) {
+    console.error("CLEAR CART ERROR:", error);
+    res.status(500).json({ error: "Error clearing cart" });
   }
 });
 

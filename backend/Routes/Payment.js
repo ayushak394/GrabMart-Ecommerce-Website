@@ -3,16 +3,22 @@ const axios = require("axios");
 const router = express.Router();
 require("dotenv").config();
 
-router.post("/create-order", async (req, res) => {
+router.post("/create-order", authenticateToken, async (req, res) => {
   const { amount, name, email, phone } = req.body;
 
-  console.log("Received payment request:", req.body);
-
   try {
+    const safeAmount = Number(amount.toFixed(2));
+
+    if (safeAmount > 100000) {
+      return res.status(400).json({
+        error: "Amount too high for sandbox",
+      });
+    }
+
     const orderResponse = await axios.post(
       "https://sandbox.cashfree.com/pg/orders",
       {
-        order_amount: amount,
+        order_amount: safeAmount,
         order_currency: "INR",
         customer_details: {
           customer_id: "cust_" + Date.now(),
@@ -21,7 +27,8 @@ router.post("/create-order", async (req, res) => {
           customer_name: name,
         },
         order_meta: {
-          return_url: "https://grab-mart-ecommerce-website.vercel.app/Home?paymentSuccess=true",
+          return_url:
+            "https://grab-mart-ecommerce-website.vercel.app/HomePage?paymentSuccess=true",
         },
       },
       {
@@ -36,12 +43,14 @@ router.post("/create-order", async (req, res) => {
 
     const sessionId = orderResponse.data.payment_session_id;
 
-    console.log("Order created. Session ID:", sessionId);
+    return res.json({ payment_session_id: sessionId });
 
-    res.json({ payment_session_id: sessionId });
   } catch (err) {
     console.error("Payment error:", err.response?.data || err.message);
-    res.status(500).json({ error: "Payment initiation failed" });
+
+    return res.status(500).json({
+      error: "Payment initiation failed",
+    });
   }
 });
 

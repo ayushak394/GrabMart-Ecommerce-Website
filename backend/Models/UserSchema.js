@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   profilepic: { type: String },
+  bio: { type: String, default: "" },
+  location: { type: String, default: "" },
 });
 
 module.exports = mongoose.model("User", userSchema); // Model - A tool that helps work(Add,Update,Delete) with the users collection in the DB.

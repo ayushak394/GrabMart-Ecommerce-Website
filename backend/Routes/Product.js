@@ -1,8 +1,9 @@
 const express = require("express");
 const Product = require("../Models/ProductSchema");
 const router = express.Router();
+import authenticateToken from "../Middleware/authenticateToken";
 
-router.get("/products", async (req, res) => {
+router.get("/products", authenticateToken, async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);

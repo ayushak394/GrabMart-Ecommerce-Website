@@ -1,5 +1,3 @@
-// Constantly checks token with each request to make sure it is generated with the same same JWT_SECRET_KEY as specified in .env file
-
 const jwt = require("jsonwebtoken");
 
 const authenticationToken = (req, res, next) => {

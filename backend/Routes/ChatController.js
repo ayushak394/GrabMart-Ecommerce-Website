@@ -48,8 +48,6 @@ User query: "${message}"
       console.error("JSON Parse Error:", text);
     }
 
-    console.log("AI OUTPUT:", data);
-
     const isFollowUp =
       message.toLowerCase().includes("other") ||
       message.toLowerCase().includes("more");
@@ -92,8 +90,6 @@ User query: "${message}"
     if (synonyms[searchTerm]) {
       searchTerm = synonyms[searchTerm];
     }
-
-    console.log("FINAL SEARCH TERM:", searchTerm);
 
     lastSearchTerm = searchTerm;
 
