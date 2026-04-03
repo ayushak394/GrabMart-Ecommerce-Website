@@ -2,6 +2,7 @@ const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 require("dotenv").config();
+const authenticateToken = require("../Middleware/authenticateToken");
 
 router.post("/create-order", authenticateToken, async (req, res) => {
   const { amount, name, email, phone } = req.body;
