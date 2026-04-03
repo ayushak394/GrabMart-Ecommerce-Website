@@ -4,7 +4,7 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 const User = require("../Models/UserSchema");
 const Feedback = require("../Models/Feedback");
-import authenticateToken from "../Middleware/authenticateToken"; // Middleware to verify JWT tokens
+import authenticateToken from "../Middleware/authenticateToken.js"; // Middleware to verify JWT tokens
 
 const router = express.Router();
 
