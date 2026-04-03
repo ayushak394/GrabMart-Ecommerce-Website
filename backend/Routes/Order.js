@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../Models/Order");
-import authenticateToken from "../Middleware/authenticateToken.js"; // Middleware to verify JWT tokens
+const authenticateToken = require("../Middleware/authenticateToken.js"); // Middleware to verify JWT tokens
 // CREATE ORDER
 router.post("/create", authenticateToken, async (req, res) => {
   try {
