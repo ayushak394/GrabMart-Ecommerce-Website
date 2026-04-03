@@ -1,4 +1,4 @@
-import CartPage from "./CartPage"
+import CartPage from "./CartPage.tsx"
 
 export const metadata = {
   title: "Cart",

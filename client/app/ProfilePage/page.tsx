@@ -1,4 +1,4 @@
-import ProfilePage from "./ProfilePage"
+import ProfilePage from "./ProfilePage.tsx"
 
 export const metadata = {
   title: "Profile",

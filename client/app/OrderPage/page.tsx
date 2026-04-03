@@ -1,4 +1,4 @@
-import OrderPage from "./OrderPage"
+import OrderPage from "./OrderPage.tsx"
 
 export const metadata = {
   title: "Order",
