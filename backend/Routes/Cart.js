@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router(); // An instance of express router which allows to define router handlers like /add,/remove etc
 const Cart = require("../Models/Cart"); // To connect to mongodb cart
-const authenticateToken = "../Middleware/authenticateToken.js"; // Middleware to verify JWT tokens
+const authenticateToken = require("../Middleware/authenticateToken.js"); // Middleware to verify JWT tokens
 
 router.post("/add", authenticateToken, async (req, res) => {
   // req represents incoming http request(contains information about the request made by client), res represent outgoing http response
