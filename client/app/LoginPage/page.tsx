@@ -1,4 +1,4 @@
-import LoginPage from "./LoginPage.tsx"
+import LoginPage from "./LoginPage"
 
 export const metadata = {
   title: "Login",

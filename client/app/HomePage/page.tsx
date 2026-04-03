@@ -1,4 +1,4 @@
-import HomePage from "./HomePage.tsx"
+import HomePage from "./HomePage"
 
 export const metadata = {
   title: "Home",

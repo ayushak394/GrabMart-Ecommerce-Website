@@ -1,4 +1,4 @@
-import SignUpPage from "./SignUpPage.tsx"
+import SignUpPage from "./SignUpPage"
 
 export const metadata = {
   title: "Sign Up",

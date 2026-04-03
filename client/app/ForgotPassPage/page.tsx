@@ -1,4 +1,4 @@
-import ForgotPassPage from "./ForgotPassPage.tsx"
+import ForgotPassPage from "./ForgotPassPage"
 
 export const metadata = {
   title: "Forgot Password",

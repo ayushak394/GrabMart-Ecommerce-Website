@@ -1,4 +1,4 @@
-import LandingPage from "./LandingPage.tsx";
+import LandingPage from "./LandingPage";
 
 export const metadata = {
   title: "GrabMart - Your One-Stop Online E-commerce Store",
