@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs"); // Library for securely hashing passwords
 const jwt = require("jsonwebtoken"); // Creating and Verifying JWT tokens
 const User = require("../Models/UserSchema"); // Refers to the Mongoose model for the User collection
 const router = express.Router(); // Used to define routes like /register/login etc.
-const authenticateToken = require("../Middleware/authenticateToken.js"); // Middleware to verify JWT tokens
+const authenticateToken = require("../Middleware/authenticateToken"); // Middleware to verify JWT tokens
 
 router.post("/register", async (req, res) => {
   // defines post route for registering a new user

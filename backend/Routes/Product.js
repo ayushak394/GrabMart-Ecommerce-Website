@@ -1,7 +1,7 @@
 const express = require("express");
 const Product = require("../Models/ProductSchema");
 const router = express.Router();
-const authenticateToken = require("../Middleware/authenticateToken.js");
+const authenticateToken = require("../Middleware/authenticateToken");
 
 router.get("/products", authenticateToken, async (req, res) => {
   try {

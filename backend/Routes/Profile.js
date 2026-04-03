@@ -4,7 +4,7 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("cloudinary").v2;
 const User = require("../Models/UserSchema");
 const Feedback = require("../Models/Feedback");
-const authenticateToken = require("../Middleware/authenticateToken.js");
+const authenticateToken = require("../Middleware/authenticateToken");
 const router = express.Router();
 
 cloudinary.config({
