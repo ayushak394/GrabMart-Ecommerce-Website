@@ -1,6 +1,8 @@
 # 🛒 GrabMart: E-Commerce Project
 
+[![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
@@ -8,17 +10,47 @@
 [![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat&logo=cloudinary&logoColor=white)](https://cloudinary.com/)
 [![EmailJS](https://img.shields.io/badge/EmailJS-D14836?style=flat&logo=mail&logoColor=white)](https://www.emailjs.com/)
 
-GrabMart is a full-stack e-commerce web application built with the MERN stack — MongoDB, Express.js, React, and Node.js. Users can register and log in using email-based authentication, browse products by category, manage their cart, securely pay via Cashfree, upload profile pictures using Cloudinary, and receive email notifications via EmailJS. It provides a seamless shopping experience with modern UI and secure authentication.
+GrabMart is a full-stack e-commerce web application built using **Next.js (TypeScript)** for the frontend and **Node.js + Express** for the backend. Users can register and log in using email-based authentication, browse products by category, manage their cart, securely pay via Cashfree, upload profile pictures using Cloudinary, and receive email notifications via EmailJS. It provides a seamless shopping experience with modern UI and secure authentication.
 
 ## 🚀 Features
 
-- ✅ User registration and login with email-based authentication
-- 🛍️ Product listing and category-based filtering
-- 🛒 Cart management (Add/Remove/Quantity update)
-- 💳 Secure Checkout with Cashfree payment gateway integration
-- 📷 Profile picture upload and storage using Cloudinary
-- 🔐 JWT-based user session authentication
-- ✉️ Email notifications (Order confirmation) powered by EmailJS
+- 🔐 JWT-based Authentication  
+- 🛍️ Product Listing & Category Filtering  
+- 🛒 Dynamic Cart System (Real-time updates with Context + SWR)  
+- 💳 Secure Checkout with Cashfree Payment Gateway  
+- 📷 Profile Image Upload using Cloudinary  
+- ✉️ Email Notifications via EmailJS  
+- ⚡ Optimized UI with Next.js App Router  
+- 🔄 Client-side Data Fetching using SWR  
+- 🎯 Fully Type-safe Frontend using TypeScript
+
+---
+
+## 🛠 Tech Stack
+
+### 🖥 Frontend
+- Next.js (App Router)
+- TypeScript
+- React
+- Tailwind CSS / Custom CSS
+- SWR (Data Fetching & Caching)
+
+### ⚙️ Backend
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+
+### 🔐 Authentication
+- JSON Web Tokens (JWT)
+
+### 💳 Payments
+- Cashfree Payment Gateway
+
+### ☁️ Services
+- Cloudinary (Image Hosting)
+- EmailJS (Email Notifications)
+
+---
 
 ## 📦 Installation
 
@@ -27,8 +59,8 @@ Follow these steps to set up and run the project locally:
 ### ✅ Prerequisites
 
 - Node.js (LTS version)
-- MongoDB (Local with Compass or Atlas Cloud)
-- CashFree, Cloudinary, EmailJS accounts (Free tier works for development)
+- MongoDB (Local or Atlas)
+- Cashfree, Cloudinary, EmailJS accounts
 
 ## 🛠 Setup Guide
 
@@ -42,7 +74,7 @@ cd grabmart
 
 Install packages for both frontend and backend:
 ```bash
-cd frontend
+cd client
 npm install
 cd ../backend
 npm install
@@ -67,16 +99,15 @@ CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-Create another .env file in the frontend directory with the following:
+Create another .env file in the client directory with the following:
 ```bash
-REACT_APP_API_BASE_URL=http://localhost:4000
+NEXT_PUBLIC_API_URL=http://localhost:4000
 
 # EmailJS Configuration
-REACT_APP_EMAILJS_SERVICE_ID=your_emailjs_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
-REACT_APP_EMAILJS_USER_ID=your_emailjs_user_id
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_emailjs_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_emailjs_user_id
 ```
-This tells the React frontend where to send API requests. Update the port if your backend runs on a different one.
 
 4️⃣ **MongoDB Setup** :
 
@@ -96,34 +127,9 @@ node app.js
 
 Start the Frontend:
 ```bash
-cd ../frontend
-npm start
+cd ../client
+npm run dev
 ```
-## 🌐 Environment Setup Notes
-
-If you're running this project locally instead of using the hosted version:
-
-Replace the hosted MONGO_URL in .env with your local MongoDB URI (e.g. mongodb://localhost:27017/E-commerce)
-
-Set REACT_APP_API_BASE_URL in frontend/.env to your local backend URL (e.g. localhost:4000)
-
-Make sure to create a Redis account with a managed instance and set REDIS_URL accordingly in backend .env
-
-## 🛠 Tech Stack
-
-Frontend: React, HTML5, CSS3
-
-Backend: Node.js, Express.js
-
-Database: MongoDB (Compass/Atlas)
-
-Auth: JWT
-
-Payments: Cashfree API
-
-Image Hosting: Cloudinary
-
-Email Notifications: EmailJS
 
 ## 🌐 Live Demo
 
